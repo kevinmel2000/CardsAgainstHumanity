@@ -20,6 +20,16 @@ import javax.ws.rs.core.Response;
 @Path("/status/")
 public class JSONService {
 
+    
+    	@GET
+	//@Path("/get")
+	@Produces(MediaType.TEXT_HTML)
+	public String getHello() {
+
+		String s = "<h1>This is a dynamic web page created by a java class</h1>";
+		return s;
+	}
+    
 	@GET
 	//@Path("/get")
 	@Produces(MediaType.APPLICATION_JSON)
