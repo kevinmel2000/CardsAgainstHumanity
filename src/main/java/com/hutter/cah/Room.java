@@ -40,8 +40,18 @@ public class Room {
         {
             players.add(p);
             return true;
+        } 
+    }
+    
+    public Player getPlayer(String name)
+    {
+        for(int z=0; z<players.size(); z++)
+        {
+            if(players.get(z).getName().equals(name))
+                return players.get(z);
         }
         
+        return null;
     }
     
     public String[] getPlayerNames()

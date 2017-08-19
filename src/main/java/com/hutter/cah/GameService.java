@@ -5,6 +5,7 @@
  */
 package com.hutter.cah;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
@@ -117,7 +118,7 @@ public class GameService {
             return null;
 	}
     
-                @POST
+        @POST
 	@Path("/getPlayersList")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public String[] getPlayersList(String data) {
@@ -144,6 +145,33 @@ public class GameService {
             }
             //return Response.status(201).entity(result).build();
             return null;
+	}
+        
+        @POST
+	@Path("/ping")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void ping(String data) {
+
+            JSONParser  parser = new JSONParser();
+            try {
+                
+                JSONObject json = (JSONObject) parser.parse(data);
+                String name = (String)json.get("name");
+                String roomCode = (String)json.get("roomCode");
+
+                int roomIndex = getRoomIndexByCode(roomCode);
+                
+                if(roomIndex >= 0)
+                {                  
+                    rooms.get(roomIndex).getPlayer(name).setLastPing(LocalDateTime.now());
+                    return;
+                }
+
+            } catch (ParseException ex) {
+                Logger.getLogger(GameService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //return Response.status(201).entity(result).build();
+            return;
 	}
         
         
