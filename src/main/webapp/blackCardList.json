@@ -1,0 +1,275 @@
+{
+    "blackCards": [
+        {
+            "id" : 1,
+            "pick" : 2,
+            "text" : "Before__________, all we had was __________."
+        },
+        {
+            "id" : 2,
+            "pick" : 2,
+            "text" : "In a pinch, __________ can be a suitable substitute for __________."
+        } ,
+                {
+            "id" : 3,
+            "pick" : 1,
+            "text" : "While the United States raced the Soviet Union to the moon, the Mexican government funneled millions of pesos into research on __________."
+        } ,        {
+            "id" : 4,
+            "pick" : 1,
+            "text" : "What would grandma find disturbing, yet oddly charming."
+        } ,        {
+            "id" : 5,
+            "pick" : 1,
+            "text" : "When I am President of the United States, I will create the Department of __________."
+        } ,        {
+            "id" : 6,
+            "pick" : 1,
+            "text" : "In his new self-produced album, Kanye West raps over the sounds of __________."
+        } ,        {
+            "id" : 7,
+            "pick" : 1,
+            "text" : "__________: good to the last drop."
+        } ,        {
+            "id" : 8,
+            "pick" : 1,
+            "text" : "Why can't I sleep at night?"
+        } ,        {
+            "id" : 9,
+            "pick" : 1,
+            "text" : "After going to the Doctor, they found __________ in Nick's butt."
+        } ,        {
+            "id" : 10,
+            "pick" : 2,
+            "text" : "In a world ravaged by __________, our only solace is __________."
+        } ,        {
+            "id" : 11,
+            "pick" : 1,
+            "text" : "Hey Reddit! I'm __________. Ask me anything."
+        } ,        {
+            "id" : 12,
+            "pick" : 1,
+            "text" : "During sex, I like to think about __________."
+        } ,        {
+            "id" : 13,
+            "pick" : 1,
+            "text" : "And I would have gotten away with it, too, if it hadn't been for __________!"
+        } ,        {
+            "id" : 14,
+            "pick" : 1,
+            "text" : "Future historians will agree that __________ marked the beginning of America's decline."
+        } ,        {
+            "id" : 15,
+            "pick" : 1,
+            "text" : "What's the next Happy Meal toy?"
+        } ,        {
+            "id" : 16,
+            "pick" : 1,
+            "text" : "Charades was ruined for me forever when my mom had to act out __________."
+        } ,        {
+            "id" : 17,
+            "pick" : 1,
+            "text" : "__________. High five, bro."
+        } ,        {
+            "id" : 18,
+            "pick" : 1,
+            "text" : "Before I run for President, I must destroy all evidence of my involvement with __________."
+        } ,        {
+            "id" : 19,
+            "pick" : 1,
+            "text" : "Dear Abby, I'm having some trouble with __________ and would like your advice."
+        } ,        {
+            "id" : 20,
+            "pick" : 1,
+            "text" : "Star Wars Episode 53: Return of __________."
+        } ,        {
+            "id" : 21,
+            "pick" : 1,
+            "text" : "The new Chevy Tahoe. With the power and the space to take __________ everywhere you go."
+        } ,        {
+            "id" : 22,
+            "pick" : 2,
+            "text" : "In M. Night Shyamalan's new movie, Bruce Willis discovers that __________ had really been __________ all along."
+        } ,        {
+            "id" : 23,
+            "pick" : 1,
+            "text" : "What is George W. Bush thinking about right now?"
+        } ,        {
+            "id" : 24,
+            "pick" : 1,
+            "text" : "What's harshing my mellow, man?"
+        } ,        {
+            "id" : 25,
+            "pick" : 1,
+            "text" : "What gives me uncontrollable gas?"
+        } ,        {
+            "id" : 26,
+            "pick" : 1,
+            "text" : "My plan for world domination begins with __________."
+        } ,        {
+            "id" : 27,
+            "pick" : 1,
+            "text" : "Daddy, why is mommy crying?"
+        } ,        {
+            "id" : 28,
+            "pick" : 1,
+            "text" : "The healing process began when I joined a support group for victims of __________."
+        } ,        {
+            "id" : 29,
+            "pick" : 1,
+            "text" : "What did the US airdrop to the children of Afghanistan?."
+        } ,        {
+            "id" : 30,
+            "pick" : 1,
+            "text" : "What brough the orgy to a griding halt?"
+        } ,        {
+            "id" : 31,
+            "pick" : 1,
+            "text" : "Kids, I don't needs drugs to get high. I'm high on __________."
+        } ,        {
+            "id" : 32,
+            "pick" : 3,
+            "text" : "I went from __________ to __________, all thanks to __________."
+        } ,        {
+            "id" : 33,
+            "pick" : 1,
+            "text" : "In Rome, there are whisperings that the Vatican has a secret room devoted to __________."
+        } ,        {
+            "id" : 34,
+            "pick" : 1,
+            "text" : "My new favorite porn star is Joey '__________' McGee."
+        } ,        {
+            "id" : 35,
+            "pick" : 1,
+            "text" : "What's that sound?"
+        } ,        {
+            "id" : 36,
+            "pick" : 2,
+            "text" : "Micheal Bay's new three-hour action epic pits __________ against __________."
+        } ,        {
+            "id" : 37,
+            "pick" : 1,
+            "text" : "Maybe she's born with it. Maybe it's __________."
+        } ,        {
+            "id" : 38,
+            "pick" : 1,
+            "text" : "In the new Disney Channel Original Movie, Hannah Montana struggles with __________ for the first time."
+        } ,        {
+            "id" : 39,
+            "pick" : 1,
+            "text" : "Uh, hey guys, I know this was my idea, but I'm having serious doubts about __________."
+        } ,        {
+            "id" : 40,
+            "pick" : 1,
+            "text" : "What will always get you laid?"
+        } ,        {
+            "id" : 41,
+            "pick" : 1,
+            "text" : "What are my parents hiding from me?"
+        } ,        {
+            "id" : 42,
+            "pick" : 1,
+            "text" : "__________. Betcha can't have just one!"
+        } ,        {
+            "id" : 43,
+            "pick" : 1,
+            "text" : "Why am I sticky?"
+        } ,        {
+            "id" : 44,
+            "pick" : 1,
+            "text" : "At church the Preacher said __________ will SAVE your soul."
+        } ,        {
+            "id" : 45,
+            "pick" : 1,
+            "text" : "Fun tip! When your man asks you to go down on him, try surprising him with __________ instead."
+        } ,        {
+            "id" : 46,
+            "pick" : 2,
+            "text" : "I never fully understaood __________ until I encountered __________."
+        } ,        {
+            "id" : 47,
+            "pick" : 1,
+            "text" : "Just saw this upsetting video! Please retweet! #stop__________"
+        } ,        {
+            "id" : 48,
+            "pick" : 1,
+            "text" : "What don't you want to find in your Kung Pao Chicken?"
+        } ,        {
+            "id" : 49,
+            "pick" : 1,
+            "text" : "How did I lose my virginity?"
+        } ,        {
+            "id" : 50,
+            "pick" : 1,
+            "text" : "What's Teach for America using to inspire inner city students to succeed?"
+        } ,        {
+            "id" : 51,
+            "pick" : 1,
+            "text" : "When Pharaoh remained unmoved, Moses called down a Plague of __________."
+        } ,        {
+            "id" : 52,
+            "pick" :1,
+            "text" : "A recent labratory study shows that undergraduates have 50% less sex after being exposed to __________."
+        } ,        {
+            "id" : 53,
+            "pick" : 1,
+            "text" : "This is your captain speaking. Fasten your seatbelts and prepare for __________."
+        } ,        {
+            "id" : 54,
+            "pick" : 1,
+            "text" : "Donald Trump loves to __________ when out  at the zoo."
+        } ,        {
+            "id" : 55,
+            "pick" : 1,
+            "text" : "Today on Maury: 'Help! My son is __________!'"
+        } ,        {
+            "id" : 56,
+            "pick" : 2,
+            "text" : "That's right, I killed __________ How, you ask? __________."
+        } ,        {
+            "id" : 57,
+            "pick" : 1,
+            "text" : "What is Batman's guilty pleasure?"
+        } ,        {
+            "id" : 2,
+            "pick" : 2,
+            "text" : "In a pinch, __________ can be a suitable substitute for __________."
+        } ,        {
+            "id" : 2,
+            "pick" : 2,
+            "text" : "In a pinch, __________ can be a suitable substitute for __________."
+        } ,        {
+            "id" : 2,
+            "pick" : 2,
+            "text" : "In a pinch, __________ can be a suitable substitute for __________."
+        } ,        {
+            "id" : 2,
+            "pick" : 2,
+            "text" : "In a pinch, __________ can be a suitable substitute for __________."
+        } ,        {
+            "id" : 2,
+            "pick" : 2,
+            "text" : "In a pinch, __________ can be a suitable substitute for __________."
+        } ,        {
+            "id" : 2,
+            "pick" : 2,
+            "text" : "In a pinch, __________ can be a suitable substitute for __________."
+        } ,
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    ]
+}
