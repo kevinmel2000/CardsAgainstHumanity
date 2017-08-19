@@ -1,2 +1,4 @@
-com\hutter\cah\Track.class
-com\hutter\cah\JSONService.class
+com\hutter\cah\Card.class
+com\hutter\cah\GameService.class
+com\hutter\cah\Room.class
+com\hutter\cah\Player.class
