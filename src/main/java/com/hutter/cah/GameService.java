@@ -20,7 +20,8 @@ import javax.ws.rs.core.Response;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
+import java.io.*;
+import org.json.simple.JSONArray;
 
 
 /**
@@ -32,17 +33,29 @@ public class GameService {
 
         private static final ArrayList<Room> rooms = new ArrayList<>();
     
+        //
+        // Constructor 
+        //
+        
         public GameService()
         {
             if(rooms.isEmpty())
             {
+                String whiteDeck = getDeckFromFile("whiteDeck.json");
+                ArrayList<Card> deck = getCardsFromJSONString(whiteDeck);
+                
                 String roomCode = generateRoomCode();
 
                 Room room = new Room();
                 room.setId(roomCode);
+                room.setDeck(deck);
                 rooms.add(room);                
             }
         }
+        
+        //
+        // Helper methods
+        //
         
         private String generateRoomCode()
         {
@@ -52,7 +65,7 @@ public class GameService {
             for (int i = 0; i < 4; i++) {
                 roomCode += alphabet.charAt(r.nextInt(alphabet.length()));
             }
-            
+
             return roomCode;
         }
         
@@ -67,8 +80,61 @@ public class GameService {
             return -1;
         }
         
-                
+        private String getDeckFromFile(String filename)
+        {
+            try {
+               InputStream f = this.getClass().getClassLoader().getResourceAsStream(filename);
+               InputStreamReader ir = new InputStreamReader(f);
+               BufferedReader br = new BufferedReader(ir); 
+               String text;
+               String json = "";
+               
+               while ((text = br.readLine()) != null) {
+                   json += text;
+               }
+               
+               return json;
+            }
+            catch (Exception ex)
+            {
+                Logger.getLogger(GameService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       
+            return null;
+        }        
     
+        private ArrayList<Card> getCardsFromJSONString(String data)
+        {
+            ArrayList<Card> cards = new ArrayList<>();
+            
+            JSONParser  parser = new JSONParser();
+            try {
+                
+                JSONObject j = (JSONObject) parser.parse(data);
+                JSONArray jarray = (JSONArray)j.get("cards");
+                
+                for (int x = 0; x < jarray.size(); x++)
+                {
+                    JSONObject jsonCard = (JSONObject)jarray.get(x);
+                    
+                    Card c = new Card();
+                    c.setId((String)jsonCard.get("id"));  
+                    c.setText((String)jsonCard.get("text"));
+                    
+                    cards.add(c);
+                }
+                
+            } catch (ParseException ex) {
+                Logger.getLogger(GameService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            return cards;
+        }
+        
+        //
+        // Web service methods
+        //
+        
     	@GET
 	@Path("/getRoom")
 	@Produces(MediaType.APPLICATION_JSON)

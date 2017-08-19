@@ -15,7 +15,8 @@ public class Room {
     
     private String id;
     private final int max = 8;
-    private final ArrayList<Player> players;
+    private final ArrayList<Player> players = new ArrayList<>();
+    private ArrayList<Card> deck = new ArrayList<>();
     
     public String getId()
     {
@@ -27,9 +28,19 @@ public class Room {
         id = code;
     }
     
+    public void setDeck(ArrayList<Card> deck)
+    {
+        this.deck = deck;
+    }
+    
+    public ArrayList<Card> getDeck()
+    {
+        return deck;
+    }
+    
     public Room()
     {
-        players = new ArrayList<>();
+
     }
     
     public boolean addPlayer(Player p)
@@ -68,4 +79,9 @@ public class Room {
         return names;
     }
     
+    public void addCardToDeck(Card c)
+    {
+        deck.add(c);
+    }
+
 }
