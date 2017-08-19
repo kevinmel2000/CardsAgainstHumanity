@@ -1,0 +1,582 @@
+{
+    "blackDeck": [
+        {
+            "id" : "1",
+            "pick" : "2",
+            "text" : "Before__________, all we had was __________."
+        },
+        {
+            "id" : "2",
+            "pick" : "2",
+            "text" : "In a pinch, __________ can be a suitable substitute for __________."
+        } ,
+                {
+            "id" : "3",
+            "pick" : "1",
+            "text" : "While the United States raced the Soviet Union to the moon, the Mexican government funneled millions of pesos into research on __________."
+        } ,        {
+            "id" : "4",
+            "pick" : "1",
+            "text" : "What would grandma find disturbing, yet oddly charming."
+        } ,        {
+            "id" : "5",
+            "pick" : "1",
+            "text" : "When I am President of the United States, I will create the Department of __________."
+        } ,        {
+            "id" : "6",
+            "pick" : "1",
+            "text" : "In his new self-produced album, Kanye West raps over the sounds of __________."
+        } ,        {
+            "id" : "7",
+            "pick" : "1",
+            "text" : "__________: good to the last drop."
+        } ,        {
+            "id" : "8",
+            "pick" : "1",
+            "text" : "Why can't I sleep at night?"
+        } ,        {
+            "id" : "9",
+            "pick" : "1",
+            "text" : "After going to the Doctor, they found __________ in Nick's butt."
+        } ,        {
+            "id" : "10",
+            "pick" : "2",
+            "text" : "In a world ravaged by __________, our only solace is __________."
+        } ,        {
+            "id" : "11",
+            "pick" : "1",
+            "text" : "Hey Reddit! I'm __________. Ask me anything."
+        } ,        {
+            "id" : "12",
+            "pick" : "1",
+            "text" : "During sex, I like to think about __________."
+        } ,        {
+            "id" : "13",
+            "pick" : "1",
+            "text" : "And I would have gotten away with it, too, if it hadn't been for __________!"
+        } ,        {
+            "id" : "14",
+            "pick" :"1",
+            "text" : "Future historians will agree that __________ marked the beginning of America's decline."
+        } ,        {
+            "id" : "15",
+            "pick" : "1",
+            "text" : "What's the next Happy Meal toy?"
+        } ,        {
+            "id" : "16",
+            "pick" : "1",
+            "text" : "Charades was ruined for me forever when my mom had to act out __________."
+        } ,        {
+            "id" : "17",
+            "pick" : "1",
+            "text" : "__________. High five, bro."
+        } ,        {
+            "id" : "18",
+            "pick" : "1",
+            "text" : "Before I run for President, I must destroy all evidence of my involvement with __________."
+        } ,        {
+            "id" : "19",
+            "pick" : "1",
+            "text" : "Dear Abby, I'm having some trouble with __________ and would like your advice."
+        } ,        {
+            "id" : "20",
+            "pick" : "1",
+            "text" : "Star Wars Episode 53: Return of __________."
+        } ,        {
+            "id" : "21",
+            "pick" : "1",
+            "text" : "The new Chevy Tahoe. With the power and the space to take __________ everywhere you go."
+        } ,        {
+            "id" : "22",
+            "pick" : "2",
+            "text" : "In M. Night Shyamalan's new movie, Bruce Willis discovers that __________ had really been __________ all along."
+        } ,        {
+            "id" : "23",
+            "pick" : "1",
+            "text" : "What is George W. Bush thinking about right now?"
+        } ,        {
+            "id" : "24",
+            "pick" : "1",
+            "text" : "What's harshing my mellow, man?"
+        } ,        {
+            "id" : "25",
+            "pick" : "1",
+            "text" : "What gives me uncontrollable gas?"
+        } ,        {
+            "id" : "26",
+            "pick" : "1",
+            "text" : "My plan for world domination begins with __________."
+        } ,        {
+            "id" : "27",
+            "pick" : "1",
+            "text" : "Daddy, why is mommy crying?"
+        } ,        {
+            "id" : "28",
+            "pick" : "1",
+            "text" : "The healing process began when I joined a support group for victims of __________."
+        } ,        {
+            "id" : "29",
+            "pick" : "1",
+            "text" : "What did the US airdrop to the children of Afghanistan?."
+        } ,        {
+            "id" : "30",
+            "pick" : "1",
+            "text" : "What brough the orgy to a griding halt?"
+        } ,        {
+            "id" : "31",
+            "pick" : "1",
+            "text" : "Kids, I don't needs drugs to get high. I'm high on __________."
+        } ,        {
+            "id" : "32",
+            "pick" : "3",
+            "text" : "I went from __________ to __________, all thanks to __________."
+        } ,        {
+            "id" : "33",
+            "pick" : "1",
+            "text" : "In Rome, there are whisperings that the Vatican has a secret room devoted to __________."
+        } ,        {
+            "id" : "34",
+            "pick" : "1",
+            "text" : "My new favorite porn star is Joey '__________' McGee."
+        } ,        {
+            "id" : "35",
+            "pick" : "1",
+            "text" : "What's that sound?"
+        } ,        {
+            "id" : "36",
+            "pick" : "2",
+            "text" : "Micheal Bay's new three-hour action epic pits __________ against __________."
+        } ,        {
+            "id" : "37",
+            "pick" : "1",
+            "text" : "Maybe she's born with it. Maybe it's __________."
+        } ,        {
+            "id" : "38",
+            "pick" : "1",
+            "text" : "In the new Disney Channel Original Movie, Hannah Montana struggles with __________ for the first time."
+        } ,        {
+            "id" : "39",
+            "pick" : "1",
+            "text" : "Uh, hey guys, I know this was my idea, but I'm having serious doubts about __________."
+        } ,        {
+            "id" : "40",
+            "pick" : "1",
+            "text" : "What will always get you laid?"
+        } ,        {
+            "id" : "41",
+            "pick" : "1",
+            "text" : "What are my parents hiding from me?"
+        } ,        {
+            "id" : "42",
+            "pick" : "1",
+            "text" : "__________. Betcha can't have just one!"
+        } ,        {
+            "id" : "43",
+            "pick" : "1",
+            "text" : "Why am I sticky?"
+        } ,        {
+            "id" : "44",
+            "pick" : "1",
+            "text" : "At church the Preacher said __________ will SAVE your soul."
+        } ,        {
+            "id" : "45",
+            "pick" : "1",
+            "text" : "Fun tip! When your man asks you to go down on him, try surprising him with __________ instead."
+        } ,        {
+            "id" : "46",
+            "pick" : "2",
+            "text" : "I never fully understaood __________ until I encountered __________."
+        } ,        {
+            "id" : "47",
+            "pick" : "1",
+            "text" : "Just saw this upsetting video! Please retweet! #stop__________"
+        } ,        {
+            "id" : "48",
+            "pick" : "1",
+            "text" : "What don't you want to find in your Kung Pao Chicken?"
+        } ,        {
+            "id" : "49",
+            "pick" : "1",
+            "text" : "How did I lose my virginity?"
+        } ,        {
+            "id" : "50",
+            "pick" : "1",
+            "text" : "What's Teach for America using to inspire inner city students to succeed?"
+        } ,        {
+            "id" : "51",
+            "pick" : "1",
+            "text" : "When Pharaoh remained unmoved, Moses called down a Plague of __________."
+        } ,        {
+            "id" : "52",
+            "pick" :"1",
+            "text" : "A recent labratory study shows that undergraduates have 50% less sex after being exposed to __________."
+        } ,        {
+            "id" : "53",
+            "pick" : "1",
+            "text" : "This is your captain speaking. Fasten your seatbelts and prepare for __________."
+        } ,        {
+            "id" : "54",
+            "pick" : "1",
+            "text" : "Donald Trump loves to __________ when out  at the zoo."
+        } ,        {
+            "id" : "55",
+            "pick" : "1",
+            "text" : "Today on Maury: 'Help! My son is __________!'"
+        } ,        {
+            "id" : "56",
+            "pick" : "2",
+            "text" : "That's right, I killed __________ How, you ask? __________."
+        } ,        {
+            "id" : "57",
+            "pick" : "1",
+            "text" : "What is Batman's guilty pleasure?"
+        } ,
+                {
+            "id" : "58",
+            "pick" : "1",
+            "text" : "Science will never explain __________."
+        } ,        {
+            "id" : "59",
+            "pick" : "1",
+            "text" : "A romantic, candelit dinner would be incomplete without __________."
+        } ,        {
+            "id" : "60",
+            "pick" : "1",
+            "text" : "They said we were crazy. They said we couldn't put __________ inside of __________. They were wrong."
+        } ,        {
+            "id" : "61",
+            "pick" : "2",
+            "text" : "Introducing the amazing superhero/sidekick duo! It's __________ and __________!"
+        } ,        {
+            "id" : "62",
+            "pick" : "1",
+            "text" : "When all else fails, I can always masturbate to _________."
+        } ,        {
+            "id" : "63",
+            "pick" : "1",
+            "text" : "Alternative medicine is now embracing the curative powers of __________."
+        } ,        {
+            "id" : "64",
+            "pick" : "3",
+            "text" : "Make a haiku."
+        } ,        {
+            "id" : "65",
+            "pick" : "1",
+            "text" : "I'm going on a cleanse this week. Nothing but kale juice and __________."
+        } ,        {
+            "id" : "66",
+            "pick" : "1",
+            "text" : "I learned the hard way that you can't cheer up a grieving friend with __________."
+        } ,        {
+            "id" : "67",
+            "pick" : "1",
+            "text" : "War! What is it good for?"
+        } ,        {
+            "id" : "68",
+            "pick" : "1",
+            "text" : "After the earthquake, Sean Penn brought __________ to the people of Haiti."
+        } ,        {
+            "id" : "69",
+            "pick" : "1",
+            "text" : "What's a girl's best friend?"
+        } ,        {
+            "id" : "70",
+            "pick" : "1",
+            "text" : "In its new tourism campain, Detroit proudly proclaims that it has finally eliminiated __________."
+        } ,        {
+            "id" : "71",
+            "pick" : "1",
+            "text" : "Next time on Dr. Phil: How you talk to your child about__________."
+        } ,        {
+            "id" : "72",
+            "pick" : "2",
+            "text" : "And the Academy Award for __________ goes to __________."
+        } ,        {
+            "id" : "73",
+            "pick" : "1",
+            "text" : "But before I kill you, Mr. Bond, I must show you __________."
+        } ,        {
+            "id" : "74",
+            "pick" : "1",
+            "text" : "The secret to a lasting marriage is communication, communication, and __________."
+        } ,        {
+            "id" : "75",
+            "pick" : "1",
+            "text" : "A remarkable new study shows that chumps have evolved their own primitive version of __________."
+        } ,        {
+            "id" : "76",
+            "pick" : "1",
+            "text" : "Introducing X-treme Baseball! It's like baseball, but with __________!"
+        } ,        {
+            "id" : "77",
+            "pick" : "1",
+            "text" : "Here is the church, Here is the steeple, Open the doors and there is __________."
+        } ,        {
+            "id" : "78",
+            "pick" : "1",
+            "text" : "Doctor, you've gone too far! The human body wasn't meant to withstand that amount of __________."
+        } ,        {
+            "id" : "79",
+            "pick" : "2",
+            "text" : "I spent my life working toward __________, only to have it ruined by __________."
+        } ,        {
+            "id" : "80",
+            "pick" : "1",
+            "text" : "What ended my last relationship?"
+        } ,        {
+            "id" : "81",
+            "pick" : "1",
+            "text" : "Ths is the way the world ends, This is the way the world ends, Not with a bang but with __________."
+        } ,        {
+            "id" : "82",
+            "pick" : "1",
+            "text" : "Coming to Broadway this season, __________: The Musical."
+        } ,        {
+            "id" : "83",
+            "pick" : "1",
+            "text" : "Your persistence is admirable, my dear Prince. But you cannot win my heart with __________ alone."
+        } ,        {
+            "id" : "84",
+            "pick" : "1",
+            "text" : "My new job selling __________ door to door."
+        } ,        {
+            "id" : "85",
+            "pick" : "1",
+            "text" : "The CIA now interrogates enemy agents by reportedly subjecting them to __________."
+        } ,        {
+            "id" : "86",
+            "pick" : "1",
+            "text" : "It's a pity that kids these days are all getting involved with __________."
+        } ,        {
+            "id" : "87",
+            "pick" : "1",
+            "text" : "__________: kid-tested, mother-approved."
+        } ,        {
+            "id" : "88",
+            "pick" : "1",
+            "text" : "White people like __________."
+        } ,        {
+            "id" : "89",
+            "pick" : "1",
+            "text" : "I got 99 problems but __________ ain't one."
+        } ,        {
+            "id" : "90",
+            "pick" : "1",
+            "text" : "This month's Cosmo: 'Spice up your sex life by bringing __________ into the bedroom.'"
+        } ,        {
+            "id" : "91",
+            "pick" : "1",
+            "text" : "Well, if you'll excuse my gentlement, I have a date with __________."
+        } ,        {
+            "id" : "92",
+            "pick" : "1",
+            "text" : "What helps Obama unwind?"
+        } ,        {
+            "id" : "93",
+            "pick" : "1",
+            "text" : "Instead of coal, Santa now gives the bad children __________."
+        } ,        {
+            "id" : "94",
+            "pick" : "1",
+            "text" : "Little Miss Muffet, Sat on a tuffet, Eating her curds and __________."
+        } ,        {
+            "id" : "95",
+            "pick" : "1",
+            "text" : "When I was tripping on acid, __________ turned into __________."
+        } ,        {
+            "id" : "96",
+            "pick" : "1",
+            "text" : "What's that smell?"
+        } ,        {
+            "id" : "97",
+            "pick" : "1",
+            "text" : "Life for American Indians was forever changed when the White Man introduced them to __________"
+        } ,        {
+            "id" : "98",
+            "pick" : "2",
+            "text" : "If God didn't want us to enjoy __________, he wouldn't have given us __________."
+        } ,        {
+            "id" : "99",
+            "pick" : "2",
+            "text" : "Step 1: __________. Step 2: __________. Step 3: Profit."
+        } ,        {
+            "id" : "100",
+            "pick" : "1",
+            "text" : "What did I bring back from Mexico?"
+        } ,        {
+            "id" : "101",
+            "pick" : "1",
+            "text" : "MTV's mew reakity show features eight washed-up celebrities living with __________."
+        } ,        {
+            "id" : "102",
+            "pick" : "1",
+            "text" : "My country, 'tis of thee, sweet land of __________."
+        } ,        {
+            "id" : "103",
+            "pick" : "1",
+            "text" : "When I am a billionaire, I shall erect a 50-foot statue to commemorate __________."
+        } ,        {
+            "id" : "104",
+            "pick" : "1",
+            "text" : "Why do I hurt all over?"
+        } ,        {
+            "id" : "105",
+            "pick" : "1",
+            "text" : "What is Batman's guilty pleasure?"
+        } ,        {
+            "id" : "106",
+            "pick" : "1",
+            "text" : "Next from J.K. Rowling: Harry Potter and the Chamber of __________."
+        } ,        {
+            "id" : "107",
+            "pick" : "1",
+            "text" : "The Five Stages of Grief: denial, anger, bargaining, __________, acceptance."
+        } ,        {
+            "id" : "108",
+            "pick" : "1",
+            "text" : "How am I maintaining my relationship status?"
+        } ,        {
+            "id" : "109",
+            "pick" : "2",
+            "text" : "My mom freaked out when she looked at my browswer history and found __________.com/__________."
+        } ,        {
+            "id" : "110",
+            "pick" : "1",
+            "text" : "__________. It's a trap!"
+        } ,        {
+            "id" : "111",
+            "pick" : "1",
+            "text" : "Tonight on 20/20: What you don't know about __________ could kill you."
+        } ,        {
+            "id" : "112",
+            "pick" : "2",
+            "text" : "__________ is a slipperly slope that leads to __________."
+        } ,        {
+            "id" : "113",
+            "pick" : "1",
+            "text" : "Only two things in life are certain: death and __________."
+        } ,        {
+            "id" : "114",
+            "pick" : "1",
+            "text" : "Awww, Sick! I just saw this skater do a 720 kickflip into __________."
+        } ,        {
+            "id" : "115",
+            "pick" : "1",
+            "text" : "What's my secret power?"
+        } ,        {
+            "id" : "116",
+            "pick" : "1",
+            "text" : "When I pooped, what came out of my butt?"
+        } ,
+                   {
+            "id" : "117",
+            "pick" : "1",
+            "text" : "Next on ESPN2: The World Series of __________."
+        } ,        {
+            "id" : "118",
+            "pick" : "1",
+            "text" : "What was the real reason behind Carrie Fisher's death?"
+        } ,        {
+            "id" : "119",
+            "pick" : "1",
+            "text" : "What's there a ton of in heaven?"
+        } ,        {
+            "id" : "120",
+            "pick" : "3",
+            "text" : "__________ + __________ = __________."
+        } ,        {
+            "id" : "121",
+            "pick" : "1",
+            "text" : "Lifetime presents '__________: the Story of __________.'"
+        } ,        {
+            "id" : "122",
+            "pick" : "1",
+            "text" : "In L.A. County Jail, world is you can trade 200 cigarettes for __________."
+        } ,        {
+            "id" : "123",
+            "pick" : "1",
+            "text" : "The class field trip was completely ruined by __________."
+        } ,        {
+            "id" : "124",
+            "pick" : "1",
+            "text" : "What did Vin Diesel eat for dinner?"
+        } ,        {
+            "id" : "125",
+            "pick" : "2",
+            "text" : "Dear Sir or Madam, We regeret to inform you that the Office of __________ has denied your request for __________."
+        } ,        {
+            "id" : "126",
+            "pick" : "1",
+            "text" : "In his newest and most difficult stunt, David Blaine escape from __________."
+        } ,        {
+            "id" : "127",
+            "pick" : "2",
+            "text" : "__________ would be woefully incomplete without __________."
+        } ,        {
+            "id" : "128",
+            "pick" : "1",
+            "text" : "I drink to forget __________."
+        } ,        {
+            "id" : "129",
+            "pick" : "1",
+            "text" : "During his midlife crisis, my dad got really into __________."
+        } ,        {
+            "id" : "130",
+            "pick" : "1",
+            "text" : "What has been making life difficult at the nudist colony?"
+        } ,        {
+            "id" : "131",
+            "pick" : "1",
+            "text" : "Next week on the Discovery Channel , one man must survive in the depths of the Amazon with only ___________ and his wits."
+        } ,        {
+            "id" : "132",
+            "pick" : "1",
+            "text" : "After four platinum albums and three Grammys, it's time to get back wto my roots, to what inspired me ot make music in the first place: __________."
+        } ,        {
+            "id" : "133",
+            "pick" : "2",
+            "text" : "For my nex trick, I will pull __________ out of ___________."
+        } ,        {
+            "id" : "134",
+            "pick" : "1",
+            "text" : "I'm sorry Professor, but I couldn't complete my homework because of __________."
+        } ,        {
+            "id" : "135",
+            "pick" : "1",
+            "text" : "Phillip decided he was sick of __________ and jumped out the window."
+        } ,        {
+            "id" : "136",
+            "pick" : "1",
+            "text" : "What is Batman's guilty pleasure?"
+        } ,        {
+            "id" : "137",
+            "pick" : "2",
+            "text" : "You haven't lived until you have experienced __________ and __________ at the same time."
+        } ,        {
+            "id" : "138",
+            "pick" : "1",
+            "text" : "__________ always saves the day."
+        } ,        {
+            "id" : "139",
+            "pick" : "1",
+            "text" : "What never fails to liven up the party?"
+        } ,        {
+            "id" : "140",
+            "pick" : "1",
+            "text" : "What never fails to liven up the party?"
+        } ,        {
+            "id" : "141",
+            "pick" : "1",
+            "text" : "I get by with a little help from __________."
+        } ,        {
+            "id" : "142",
+            "pick" : "1",
+            "text" : "What made my first kiss so awkward?"
+        } ,        {
+            "id" : "143",
+            "pick" : "1",
+            "text" : "TSA guidelines now prohibit __________ on airplanes."
+        } 
+    
+    ]
+}
