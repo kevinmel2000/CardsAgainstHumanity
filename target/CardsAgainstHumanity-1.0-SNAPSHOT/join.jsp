@@ -35,7 +35,15 @@
         
         <br />
         <br />
-        <input type="button" value="All Players In!" onClick='allPlayersIn()' />
+        <input id='allInButton' type="button" value="All Players In!" onClick='allPlayersIn()' />
+        
+        <div id='card0' style='border:1px solid black; padding: 5px 5px 5px 5px'></div>
+        <div id='card1' style='border:1px solid black; padding: 5px 5px 5px 5px'></div>
+        <div id='card2' style='border:1px solid black; padding: 5px 5px 5px 5px'></div>
+        <div id='card3' style='border:1px solid black; padding: 5px 5px 5px 5px'></div>
+        <div id='card4' style='border:1px solid black; padding: 5px 5px 5px 5px'></div>
+        <div id='card5' style='border:1px solid black; padding: 5px 5px 5px 5px'></div>
+        <div id='card6' style='border:1px solid black; padding: 5px 5px 5px 5px'></div>
         
     </body>
 </html>

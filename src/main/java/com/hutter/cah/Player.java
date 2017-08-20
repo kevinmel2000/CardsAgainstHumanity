@@ -7,6 +7,8 @@ package com.hutter.cah;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  *
@@ -18,6 +20,8 @@ public class Player {
     private boolean isJudge; 
     private final ArrayList<Card> cards;
     private LocalDateTime lastPing;
+    private int status;
+    private Queue<Message> messageQueue = new LinkedList<Message>();
     
     // Getters/Setters (Properies)
     public void setName(String name)
@@ -48,6 +52,39 @@ public class Player {
     public boolean getIsJudge()
     {
         return this.isJudge;
+    }
+    
+    public void setStatus(int status)
+    {
+        this.status = status;
+    }
+    
+    public int getStatus()
+    {
+        return this.status;
+    }
+    
+    public void pushNotification(Message message)
+    {
+        this.messageQueue.add(message);
+    }
+    
+    public Message getNotification()
+    {
+        if (this.messageQueue.size() > 0)
+            return this.messageQueue.remove();
+        else
+            return null;
+    }
+    
+    public boolean isNotificationPending()
+    {
+        return this.messageQueue.size() > 0;
+    }
+    
+    public ArrayList<Card> getCards()
+    {
+        return this.cards;
     }
     
     // Constructor
