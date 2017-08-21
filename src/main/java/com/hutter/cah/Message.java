@@ -5,23 +5,48 @@
  */
 package com.hutter.cah;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author scott
  */
 public class Message {
     
-    private String id;
+    private String roomCode;
+    private String name;
+    private String type;
     private String text;
+    private ArrayList<Card> cards;
     
-    public String getId()
+    public String getRoomCode()
     {
-        return this.id;
+        return this.roomCode;
     }
     
-    public void setId(String id)
+    public void setRoomCode(String roomCode)
     {
-        this.id = id;
+        this.roomCode = roomCode;
+    }
+    
+    public String getName()
+    {
+        return this.name;
+    }
+    
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+    
+    public String getType()
+    {
+        return this.type;
+    }
+    
+    public void setType(String type)
+    {
+        this.type = type;
     }
     
     public String getText()
@@ -34,4 +59,13 @@ public class Message {
         this.text = text;
     }
     
+    public ArrayList<Card> getCards()
+    {
+        return this.cards;
+    }
+    
+    public void setCards(ArrayList<Card> cards)
+    {
+        this.cards = cards;
+    }
 }

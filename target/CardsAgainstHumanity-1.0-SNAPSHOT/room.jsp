@@ -14,7 +14,6 @@
         <link href="styles/standard.css" rel="stylesheet" type="text/css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="scripts/server.js"></script>
-
     </head>
     <body>
         <div style='float:left'>
@@ -24,13 +23,30 @@
         <div style='float:left; margin-left:20px;'>
             <p>Please use your mobile device and go to the following url to join this room:</p>
             <span id='host'></span>            
-            <h3>Room Code: <span id='roomId'></span></h3>
+            <h3>Room Code: <span id='roomCode'></span></h3>
         </div>
         
         <div style='clear:both; padding-top: 20px'>
             <h3>Logged In Players<h3>
-            <div id="players"></div>
+            <div >
+                <table id="players">
+                    <tr><th>Player</th><th>Score</th></tr>
+                </table>
+            </div>
+        </div>
+        <div>
+            Server status: <span id='status'></span>
+        </div>       
+        <div>
+            Judge Name: <span id='judgeName'></span>
+        </div>
+        
+        <div id='blackCard' class='blackcard'> 
         </div>
 
+        <div id='selectedCards' style='float:left'>
+        </div>
+        
+        
     </body>
 </html>

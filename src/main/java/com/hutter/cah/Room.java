@@ -6,6 +6,8 @@
 package com.hutter.cah;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Random;
 
 /**
@@ -14,40 +16,67 @@ import java.util.Random;
  */
 public class Room {
     
-    private String id;
+    private String roomCode;
     private final int max = 8;
     private final ArrayList<Player> players = new ArrayList<>();
-    private ArrayList<Card> deck = new ArrayList<>();
+    private ArrayList<Card> whiteDeck = new ArrayList<>();
+    private ArrayList<Card> blackDeck = new ArrayList<>();
+    private final Queue<Message> messageQueue = new LinkedList<>();
     private boolean locked = false;
-    private int judgeIndex = 0;
-    private int gameState = 0;
+    private int judgeIndex = -1;
+    private Card pickedBlackCard;
     
-    public String getId()
+    public String getRoomCode()
     {
-        return id;
+        return roomCode;
     }
     
-    public void setId(String code)
+    public void setRoomCode(String roomCode)
     {
-        id = code;
+        this.roomCode = roomCode;
     }
     
-    public void setDeck(ArrayList<Card> deck)
+    public void setWhiteDeck(ArrayList<Card> whiteDeck)
     {
-        this.deck = deck;
+        this.whiteDeck = whiteDeck;
     }
     
-    public ArrayList<Card> getDeck()
+    public ArrayList<Card> getWhiteDeck()
     {
-        return deck;
+        return whiteDeck;
+    } 
+    
+    public ArrayList<Card> getBlackDeck()
+    {
+        return blackDeck;
+    }
+    
+    public void setBlackDeck(ArrayList<Card> blackDeck)
+    {
+        this.blackDeck = blackDeck;
+    }
+    
+    public void pushNotification(Message message)
+    {
+        this.messageQueue.add(message);
+    }
+    
+    public Message getNotification()
+    {
+        if (this.messageQueue.size() > 0)
+            return this.messageQueue.remove();
+        else
+            return null;
+    }
+    
+    public boolean isNotificationPending()
+    {
+        return this.messageQueue.size() > 0;
     }
     
     public void setLock(boolean locked)
     {
         this.locked = locked;
-        
-        if (this.locked)
-            playGame();
     }
     
     public boolean getLock()
@@ -98,40 +127,21 @@ public class Room {
     
     public void addCardToDeck(Card c)
     {
-        deck.add(c);
+        whiteDeck.add(c);
     }
 
     public void playGame()
     {
-        Random r = new Random();
+        // Select a judge
+        selectJudge();
         
-        // Give each player 7 cards
-        // Loop through each player
-        for(int playerIndex=0; playerIndex< this.players.size(); playerIndex++)
-        {
-            // Draw 7 cards for the player
-            for (int counter=0; counter<7; counter++)
-            {
-               int randomDeckCardIndex = r.nextInt(deck.size());
-
-               // take a random card from the deck
-               Card drawnCard = deck.get(randomDeckCardIndex);
-               deck.remove(drawnCard);
-
-               // give it to the player
-               this.players.get(playerIndex).AddCard(drawnCard);   
-            }
-            
-            // inform the player of his cards
-            Message m = new Message();
-            m.setId("123");
-            m.setText("Cards dealt");
-            this.players.get(playerIndex).pushNotification(m);
-        }
-        
-        // Notify each player of their cards
+        // Deal cards and notify players
+        dealCards();
         
         // Draw a black card and display it on screen
+        drawBlackCard();
+               
+        // Notify judge to wait until all cards selected
         
         // Notify players to select a card
         
@@ -142,4 +152,84 @@ public class Room {
         // Give points to winner
     }
     
+    private void selectJudge()
+    {
+        judgeIndex++;
+        if (judgeIndex > this.players.size()-1)
+            judgeIndex = 0;
+        
+        Message m = new Message();
+        m.setRoomCode(roomCode);
+        m.setType("You Are Judge");
+        m.setName(this.players.get(judgeIndex).getName());
+        m.setText("");
+        m.setCards(null);
+        this.players.get(judgeIndex).pushNotification(m);
+        
+        m = new Message();
+        m.setRoomCode(roomCode);
+        m.setType("Judge Selected");
+        m.setName("server");
+        m.setText(this.players.get(judgeIndex).getName());
+        m.setCards(null);
+        this.pushNotification(m);
+    }
+    
+    private void dealCards()
+    {
+        Random r = new Random();
+        
+        // Give each player 7 cards
+        // Loop through each player
+        for(int playerIndex=0; playerIndex< this.players.size(); playerIndex++)
+        {
+            // Disable the All Players In button
+            Message m = new Message();
+            m.setRoomCode(roomCode);
+            m.setType("All Players In");
+            m.setName(this.players.get(playerIndex).getName());
+            m.setCards(null);
+            this.players.get(playerIndex).pushNotification(m);
+            
+            // Only draw show hands to players
+            if (playerIndex != judgeIndex)
+            {
+                // Draw 7 cards for the player
+               for (int counter=0; counter<7; counter++)
+               {
+                  int randomDeckCardIndex = r.nextInt(whiteDeck.size());
+
+                  // take a random card from the deck
+                  Card drawnCard = whiteDeck.get(randomDeckCardIndex);
+                  whiteDeck.remove(drawnCard);
+
+                  // give it to the player
+                  this.players.get(playerIndex).AddCard(drawnCard);   
+               }
+
+               m = new Message();
+               m.setRoomCode(roomCode);
+               m.setType("Cards Dealt");
+               m.setName(this.players.get(playerIndex).getName());
+               m.setCards(this.players.get(playerIndex).getCards());
+               this.players.get(playerIndex).pushNotification(m);               
+            }
+         }
+    }
+    
+    private void drawBlackCard()
+    {
+        Random r = new Random();
+        int blackCardIndex = r.nextInt(blackDeck.size());
+        pickedBlackCard = blackDeck.get(blackCardIndex);
+        blackDeck.remove(blackCardIndex);
+        
+        Message m = new Message();
+        m.setRoomCode(roomCode);
+        m.setType("Picked Black Card");
+        m.setName("server");
+        m.setText(pickedBlackCard.text);
+        m.setCards(null);
+        this.pushNotification(m);
+    }
 }

@@ -1,58 +1,110 @@
-var roomCode = "error";
-var hostUrl = "http://" + document.location.host;
+var roomCode = "";
+var hostUrl = "http://" + document.location.host + "/CAH";
+var api = "/api/v1/com";
     
  $(document).ready(function() {
 
      // Get an available room code
-     var host = hostUrl + "/CAH/api/status/getRoom";
-     $.getJSON(host, function( room ) {
-         roomCode = room.id;
-         $("#roomId").text(roomCode);
-     }); 
+     var message = {};
+     message.roomCode = "";
+     message.name = "server";
+     message.type = "Get Room Code";
+     message.text = "";
+     message.cards = null;
+     
+     postMessage(message);
+     
+     $("#host").html("<a href='" + hostUrl + "/play.jsp'>" + hostUrl + "/play.jsp</a>");
 
-     $("#host").text(hostUrl + "/CAH/join.asp");
-
-     setInterval(getPlayersList, 1000);
+     setInterval(getMessage, 1000);
 
  });
 
- function getPlayersList() {
+function postMessage(message) {
+    
+        var host = hostUrl + api;
+        var jsonRequest = JSON.stringify(message);
+    
+        $.ajax({
+        url: host,
+        dataType: 'json',
+        type: 'post',
+        contentType: 'application/json',
+        data: jsonRequest,
+        processData: false,
+        success: function(message, textStatus, jQxhr)
+        {
+            $('#status').html(message.type);
+            
+            if (message.type === "Get Room Code")
+            {
+                $('#roomCode').html(message.text);
+                roomCode = message.text;
+            }
+            
+            if (message.type === "Player Joined")
+            {               
+                $('#players').append(message.text + "<br />");
+            }
+            
+            if (message.type === "Black Card Dealt")
+            {
+                displayBlackCard();
+            }
+            
+        },
+        error: function( jqXhr, textStatus, errorThrown ){
+            $('#status').html(textStatus);
+        }
+    });   
+    
+}
 
-     var host = hostUrl + "/CAH/api/status/getPlayersList";
-     var request = {};
-     request.roomCode = roomCode;
+function getMessage() {
 
-     $.ajax({
-         url: host,
-         dataType: 'json',
-         type: 'post',
-         contentType: 'application/json',
-         data: JSON.stringify(request),
-         processData: false,
-         success: function( data, textStatus, jQxhr ){
+    var host = hostUrl + api;
+    
+    var request = {};
+    request.roomCode = roomCode;
+    request.name = "server";
+    request.type = "Get Message";
+    request.text = "";
+    request.card = null;
+    var jsonRequest = JSON.stringify(request);
+    
+    $.ajax({
+        url: host,
+        dataType: 'json',
+        type: 'post',
+        contentType: 'application/json',
+        data: jsonRequest,
+        processData: false,
+        success: function(message, textStatus, jQxhr)
+        {
+            if (message.type === "Get Message")
+            {
+                 $('#status').html(message.text);
+            }
 
-             if(data === undefined)
-             {
-                 $('#players').html("Invalid room code.");
-             }
-             else
-             {
-                 var htmlNames = "<ul>";
-                 for(var p=0; p<data.length; p++)
-                 {
-                     htmlNames += "<li>" + data[p] + "</li>"; 
-                 }
-                 htmlNames += "</ul>";
-                 
-                 $('#players').html(htmlNames);
+            if (message.type === "Player Joined")
+            {
+                $("#players tr:last").after("<tr><td>" + message.text + "</td><td id='score-" + message.text + "' align=center>0</td>");
+            }
 
-             }
+            if (message.type === "Picked Black Card")
+            {
+                $("#blackCard").html(message.text);
+            }
+            
+            if (message.type === "Judge Selected")
+            {
+                $("#judgeName").html(message.text);
+            }
 
-         },
-         error: function( jqXhr, textStatus, errorThrown ){
-             $('#status').html(textStatus);
-         }
-     }); 
-
- }
-
+        },
+        error: function( jqXhr, textStatus, errorThrown ){
+            $('#status').html(textStatus);
+        }
+    });   
+    
+}

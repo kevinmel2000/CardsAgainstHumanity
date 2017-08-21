@@ -22,6 +22,7 @@ public class Player {
     private LocalDateTime lastPing;
     private int status;
     private Queue<Message> messageQueue = new LinkedList<Message>();
+    private int score;
     
     // Getters/Setters (Properies)
     public void setName(String name)
@@ -80,6 +81,16 @@ public class Player {
     public boolean isNotificationPending()
     {
         return this.messageQueue.size() > 0;
+    }
+    
+    public void setScore(int score)
+    {
+        this.score = score;
+    }
+    
+    public int getScore()
+    {
+        return this.score;
     }
     
     public ArrayList<Card> getCards()

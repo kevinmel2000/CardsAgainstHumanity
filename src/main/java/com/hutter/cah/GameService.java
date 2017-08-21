@@ -11,10 +11,10 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
+//import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+//import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.json.simple.JSONObject;
@@ -22,17 +22,17 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import java.io.*;
 import org.json.simple.JSONArray;
-import org.json.simple.JSONValue;
+//import org.json.simple.JSONValue;
 
 
 /**
  *
  * @author scott
  */
-@Path("/status/")
+@Path("/v1/")
 public class GameService {
 
-        private static final ArrayList<Room> rooms = new ArrayList<>();
+        private static final ArrayList<Room> ROOMS = new ArrayList<Room>();
     
         //
         // Constructor 
@@ -40,17 +40,21 @@ public class GameService {
         
         public GameService()
         {
-            if(rooms.isEmpty())
+            if(GameService.ROOMS.isEmpty())
             {
-                String whiteDeck = getDeckFromFile("whiteDeck.json");
-                ArrayList<Card> deck = getCardsFromJSONString(whiteDeck);
+                String whiteDeckString = getDeckFromFile("whiteDeck.json");
+                ArrayList<Card> whiteDeck = getCardsFromJSONString(whiteDeckString);
+                
+                String blackDeckString = getDeckFromFile("blackDeck.json");
+                ArrayList<Card> blackDeck = getCardsFromJSONString(blackDeckString);
                 
                 String roomCode = generateRoomCode();
 
                 Room room = new Room();
-                room.setId(roomCode);
-                room.setDeck(deck);
-                rooms.add(room);                
+                room.setRoomCode(roomCode);
+                room.setWhiteDeck(whiteDeck);
+                room.setBlackDeck(blackDeck);
+                GameService.ROOMS.add(room);                
             }
         }
         
@@ -71,10 +75,10 @@ public class GameService {
         }
         
         private int getRoomIndexByCode(String code)
-        {
-            for(int x=0; x<rooms.size(); x++)
+        {          
+            for(int x=0; x<GameService.ROOMS.size(); x++)
             {
-                if (rooms.get(x).getId().equals(code))
+                if (GameService.ROOMS.get(x).getRoomCode().equals(code))
                     return x;
             }
             
@@ -96,7 +100,7 @@ public class GameService {
                
                return json;
             }
-            catch (Exception ex)
+            catch (IOException ex)
             {
                 Logger.getLogger(GameService.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -135,230 +139,194 @@ public class GameService {
         //
         // Web service methods
         //
-        
-    	@GET
-	@Path("/getRoom")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Room getRoom() {
-
-            return rooms.get(0);
-	}
+       
         
         @POST
-	@Path("/joinRoom")
+	@Path("/com")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String[] joinRoom(String data) {
+	public Response com(String data) {
 
-            String result = "";
             JSONParser  parser = new JSONParser();
+            Message response = new Message();
+            
             try {
-                
+                // Get the json data and parse it into useable objects
                 JSONObject json = (JSONObject) parser.parse(data);
-                String name = (String)json.get("name");
-                String roomCode = (String)json.get("roomCode");
-
-                int roomIndex = getRoomIndexByCode(roomCode);
                 
+                // Convert the json data to a message object
+                Message request = new Message();
+                request.setRoomCode((String)json.get("roomCode"));
+                request.setName((String)json.get("name"));
+                request.setType((String)json.get("type"));
+                request.setText((String)json.get("text"));
+                request.setCards((ArrayList<Card>)json.get("cards"));
+                
+                if(request.getName().equals("server"))
+                    response = HandleServerRequest(request);
+                else
+                    response = HandleClientRequest(request);
+
+            } 
+            catch (ParseException ex) 
+            {
+                Logger.getLogger(GameService.class.getName()).log(Level.SEVERE, null, ex);
+                
+                // Send an error response
+                response.setRoomCode("");
+                response.setName("");
+                response.setType("Parse Exception");
+                response.setText(ex.getMessage());
+                response.setCards(null);  
+            }
+            
+            return Response.status(201).entity(response).build();
+	}
+ 
+        private Message HandleServerRequest(Message request)
+        { 
+            Message response = new Message();
+            String type = request.getType();
+            
+            if(type.equals("Get Message"))
+            {
+                int roomIndex = getRoomIndexByCode(request.getRoomCode());
+  
                 if(roomIndex >= 0)
-                {
-                    if(!rooms.get(roomIndex).getLock())
+                {   
+                    // Check for any pending messages
+                    if (GameService.ROOMS.get(roomIndex).isNotificationPending() == true)
                     {
-                        Player p = new Player();
-                        p.setName(name);
-
-                        rooms.get(roomIndex).addPlayer(p);
-                        String names[] = rooms.get(roomIndex).getPlayerNames();
-
-                        return names;                        
+                       response = GameService.ROOMS.get(roomIndex).getNotification();
                     }
                     else
                     {
-                        return null;
+                        // Send a no message response
+                       response.setRoomCode(request.getRoomCode());
+                       response.setName(request.getName());
+                       response.setType(type);
+                       response.setText("No message");
+                       response.setCards(null);                       
                     }
-
                 }
                 else
                 {
-                    return null;
+                    response.setRoomCode("");
+                    response.setName(request.getName());
+                    response.setType(type);
+                    response.setText("Invalid room code.");
+                    response.setCards(null); 
                 }
-                
-                
-            } catch (ParseException ex) {
-                Logger.getLogger(GameService.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-
+            if (request.getType().equals("Get Room Code"))
+            {
+                response.setRoomCode(GameService.ROOMS.get(0).getRoomCode());
+                response.setName(request.getName());
+                response.setType("Get Room Code");
+                response.setText(GameService.ROOMS.get(0).getRoomCode());
+                response.setCards(null);    
+            }
             
-            //return Response.status(201).entity(result).build();
-            return null;
-	}
-    
-        @POST
-	@Path("/getPlayersList")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public String[] getPlayersList(String data) {
-
-            JSONParser  parser = new JSONParser();
-            try {
-                
-                JSONObject json = (JSONObject) parser.parse(data);
-                String roomCode = (String)json.get("roomCode");
-
-                int roomIndex = getRoomIndexByCode(roomCode);
-                
-                if(roomIndex >= 0)
-                {                  
-                    String names[] = rooms.get(roomIndex).getPlayerNames();
-                    return names;
-                }
-                else
-                {
-                    return null;
-                }
-            } catch (ParseException ex) {
-                Logger.getLogger(GameService.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            //return Response.status(201).entity(result).build();
-            return null;
-	}
-        
-        @POST
-	@Path("/getStatus")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response getStatus(String data) {
-
-            JSONParser  parser = new JSONParser();
-            try {
-                
-                JSONObject json = (JSONObject) parser.parse(data);
-                String name = (String)json.get("name");
-                String roomCode = (String)json.get("roomCode");
-
-                int roomIndex = getRoomIndexByCode(roomCode);
-                
-                if(roomIndex >= 0)
-                {     
-                    // Update the player's last ping time so we know he is still active
-                    rooms.get(roomIndex).getPlayer(name).setLastPing(LocalDateTime.now());
-                    
-                    // Check for any pending messages
-                    if (rooms.get(roomIndex).getPlayer(name).isNotificationPending())
-                    {
-                        Message message = rooms.get(roomIndex).getPlayer(name).getNotification();
-                        //JSONObject jsonResponse = (JSONObject) parser.parse(message);
-                        return Response.status(201).entity(message).build();
-                    }
-                    //String message = "{\"message\": \"No messages\"}";
-                    //JSONObject jsonResponse = (JSONObject) parser.parse(message);
-                    Message m = new Message();
-                    m.setId("0");
-                    m.setText("No message");
-                    return Response.status(201).entity(m).build();
-                }
-                else
-                {
-                    //String message = "{\"message\": \"Invalid room\"}";
-                    //JSONObject jsonResponse = (JSONObject) parser.parse(message);
-                    Message m = new Message();
-                    m.setId("0");
-                    m.setText("No message");
-                    return Response.status(201).entity(m).build();
-                }
-
-            } catch (ParseException ex) {
-                Logger.getLogger(GameService.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            return null;
-	}
-               
-        @POST
-	@Path("/roomLock")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public void roomLock(String data) {
-
-            JSONParser  parser = new JSONParser();
-            try {
-                
-                JSONObject json = (JSONObject) parser.parse(data);
-                String name = (String)json.get("name");
-                String roomCode = (String)json.get("roomCode");
-
-                int roomIndex = getRoomIndexByCode(roomCode);
-                
-                if(roomIndex >= 0)
-                {                  
-                    rooms.get(roomIndex).setLock(true);
-                    return;
-                }
-
-            } catch (ParseException ex) {
-                Logger.getLogger(GameService.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            //return Response.status(201).entity(result).build();
-            return;
-	}
-        
-        @POST
-        @Path("/getPlayerCards")
-        @Consumes(MediaType.APPLICATION_JSON)
-        public Response getPlayerCards(String request)
-        {
-            JSONParser  parser = new JSONParser();
-            try {
-                
-                JSONObject json = (JSONObject) parser.parse(request);
-                String name = (String)json.get("name");
-                String roomCode = (String)json.get("roomCode");
-
-                int roomIndex = getRoomIndexByCode(roomCode);
-                
-                if(roomIndex >= 0)
-                {     
-                    // Update the player's last ping time so we know he is still active
-                    rooms.get(roomIndex).getPlayer(name).setLastPing(LocalDateTime.now());
-                    
-                    ArrayList<Card> cards = rooms.get(roomIndex).getPlayer(name).getCards();
-                    
-                    return Response.status(201).entity(cards).build();
-                }
-                else
-                {
-                    //String message = "{\"message\": \"Invalid room\"}";
-                    //JSONObject jsonResponse = (JSONObject) parser.parse(message);
-                    Message m = new Message();
-                    m.setId("0");
-                    m.setText("No message");
-                    return Response.status(201).entity(m).build();
-                }
-
-            } catch (ParseException ex) {
-                Logger.getLogger(GameService.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            return null;
+            return response;
         }
         
-	@GET
-	//@Path("/get")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Card getCardInJSON() {
+        private Message HandleClientRequest(Message request)
+        {
+            Message response = new Message();
+            String type = request.getType();
+            
+            if(type.equals("Join Room"))
+            {
+                int roomIndex = getRoomIndexByCode(request.getText());
+                
+                if(roomIndex >= 0)
+                {
+                    if(GameService.ROOMS.get(roomIndex).getLock() == true)
+                    {
+                        response.setRoomCode("");
+                        response.setName(request.getName());
+                        response.setType(type);
+                        response.setText("This room is currently locked.");
+                        response.setCards(null);                       
+                    }
+                    else
+                    {
+                        // Create a player object and add it to the room
+                        Player p = new Player();
+                        p.setName(request.getName());
+                        GameService.ROOMS.get(roomIndex).addPlayer(p);
+                        GameService.ROOMS.get(roomIndex).getPlayer(request.getName()).setLastPing(LocalDateTime.now());
+                        
+                        // Create response object to confirm joining the room
+                        response.setRoomCode(request.getText());
+                        response.setName(request.getName());
+                        response.setType(type);
+                        response.setText("You have joined the room.");
+                        response.setCards(null); 
+                        
+                        // Notify the room that a player has joined.
+                        Message m = new Message();
+                        m.setRoomCode(request.getRoomCode());
+                        m.setName("server");
+                        m.setType("Player Joined");
+                        m.setText(request.getName());
+                        GameService.ROOMS.get(roomIndex).pushNotification(m);
+                    }
+                }
+                else
+                {
+                    response.setRoomCode("");
+                    response.setName(request.getName());
+                    response.setType(type);
+                    response.setText("Invalid room code.");
+                    response.setCards(null); 
+                }
+                
+            }
+           
+            if(type.equals("All Players In"))
+            {
+                int roomIndex = getRoomIndexByCode(request.getRoomCode());
+                
+                GameService.ROOMS.get(roomIndex).setLock(true);
+                GameService.ROOMS.get(roomIndex).playGame();                  
 
-		Card card = new Card();
-		card.setId("123");
-		card.setText("___ loves everyone.");
+            }
+            
+            if(type.equals("Get Message"))
+            {
+                int roomIndex = getRoomIndexByCode(request.getRoomCode());
+  
+                if(roomIndex >= 0)
+                {   
+                    // Update the player's last ping time so we know he is still active
+                    GameService.ROOMS.get(roomIndex).getPlayer(request.getName()).setLastPing(LocalDateTime.now());
 
-		return card;
-
-	}
-
-	@POST
-	//@Path("/post")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createCardInJSON(Card card) {
-
-		String result = "Card saved : " + card;
-		return Response.status(201).entity(result).build();
-
-	}
+                    // Check for any pending messages
+                    if (GameService.ROOMS.get(roomIndex).getPlayer(request.getName()).isNotificationPending() == true)
+                    {
+                       response = GameService.ROOMS.get(roomIndex).getPlayer(request.getName()).getNotification();
+                    }
+                    else
+                    {
+                        // Send a no message response
+                       response.setRoomCode(request.getRoomCode());
+                       response.setName(request.getName());
+                       response.setType(type);
+                       response.setText("");
+                       response.setCards(null);                       
+                    }
+                }
+                else
+                {
+                    response.setRoomCode("");
+                    response.setName(request.getName());
+                    response.setType(type);
+                    response.setText("Invalid room code.");
+                    response.setCards(null); 
+                }
+            }
+            
+            return response;
+        }
 }
