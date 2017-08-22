@@ -18,45 +18,42 @@
     </head>
     <body>       
         <div>
-            <img src='images/logo.png' />
+            <img src='images/logo-mobile.png' />
         </div>
 
-        <div>
-            Your Name: <input id='name' type="text" />
-        </div>
-        <div>
-            Room Code: <input id='roomCode' type="text" />  
-        </div>
-        <div>
-            <input id="joinRoom" type="Submit" onClick='joinRoom()' />
-        </div>    
-
-        <div id='status'></div>
-        
-        <br />
-        <br />
-        <input id='allInButton' type="button" value="All Players In!" onClick='allPlayersIn()' />
-        
-        <div id="cards">
-            <div id='card0' style='border:1px solid black; padding: 5px 5px 5px 5px'></div>
-            <div id='card1' style='border:1px solid black; padding: 5px 5px 5px 5px'></div>
-            <div id='card2' style='border:1px solid black; padding: 5px 5px 5px 5px'></div>
-            <div id='card3' style='border:1px solid black; padding: 5px 5px 5px 5px'></div>
-            <div id='card4' style='border:1px solid black; padding: 5px 5px 5px 5px'></div>
-            <div id='card5' style='border:1px solid black; padding: 5px 5px 5px 5px'></div>
-            <div id='card6' style='border:1px solid black; padding: 5px 5px 5px 5px'></div>
-            <div>Selection:
-                <select id="cardSelection">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                </select>
-                <input id="cardSelectionSubmit" type="Submit" onClick="submitSelection()" />
+        <div id='userInfo'>
+            <div>
+                Your Name: <input id='name' type="text" />
             </div>
+            <div>
+                Room Code: <input id='roomCode' type="text" />  
+            </div>
+            <div>
+                <input id="joinRoom" type="Submit" onClick='joinRoom()' />
+            </div> 
+            <div id='status'></div>
+            <div id='waitingOnOthers'>
+                <input id='allInButton' type="button" value="All Players In!" onClick='allPlayersIn()' />
+            </div>   
         </div>
+
+        <div id='playerDisplay' style='display:none'>
+            <div>
+                <div id='card0' class='smallwhitecard'></div>
+                <div id='card1' class='smallwhitecard'></div>
+                <div id='card2' class='smallwhitecard'></div>
+                <div id='card3' class='smallwhitecard'></div>
+                <div id='card4' class='smallwhitecard'></div>
+                <div id='card5' class='smallwhitecard'></div>
+                <div id='card6' class='smallwhitecard'></div>    
+            </div>
+            <input id="cardSelectionSubmit" type="Submit" onClick="submitSelection()" />
+        </div>
+        
+        <div id='judgeDisplay' style='display:none'>
+            <div id='blackCard' class='smallblackcard'></div>
+            <input id="answerCardSelectionSubmit" type="Submit" onClick="submitSelection()" />
+        </div>
+        
     </body>
 </html>

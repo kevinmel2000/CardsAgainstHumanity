@@ -83,7 +83,7 @@ function getMessage() {
         {
             if (message.type === "Get Message")
             {
-                 $('#status').html(message.text);
+                $('#status').html(message.text);
             }
 
             if (message.type === "Player Joined")
@@ -99,6 +99,18 @@ function getMessage() {
             if (message.type === "Judge Selected")
             {
                 $("#judgeName").html(message.text);
+            }
+            
+            if (message.type === "Give Card To Judge")
+            {
+                var div = "<div id='answerCard' class='largewhitecard'";
+                      div += " value='" + message.cards[0].id + "'";
+                      div += " txt='" + message.cards[0].text + "'";
+                      div += " player='" + message.text + "'";
+                      div += ">" + message.cards[0].text;
+                   div += "</div>";
+                   
+                $('#blackCard').after(div);
             }
 
         },

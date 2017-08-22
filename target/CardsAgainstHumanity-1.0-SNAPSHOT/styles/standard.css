@@ -8,24 +8,38 @@ and open the template in the editor.
     Author     : scott
 */
 
-.blackcard {
+.largeblackcard {
     margin-left: 10px;
     border:1px solid black; 
-    padding: 20px 5px 5px 5px; 
+    padding: 30px 10px 5px 10px; 
     background-color: Black; 
-    width: 200px; 
-    height: 300px; 
+    width: 150px; 
+    height: 200px; 
     color:White; 
     float:left
 }
 
-.selectedcard {
+.largewhitecard {
     margin-left: 10px;
     border:1px solid black; 
-    padding: 20px 5px 5px 5px; 
+    padding: 30px 10px 5px 10px; 
     background-color: White; 
-    width: 200px; 
-    height: 300px; 
+    width: 150px; 
+    height: 200px; 
     color:Black; 
     float:left
+}
+
+.smallblackcard {
+    border:1px solid black; 
+    padding: 10px 10px 10px 10px; 
+    background-color: Black; 
+    color:White; 
+}
+
+.smallwhitecard {
+    border:1px solid black; 
+    padding: 10px 10px 10px 10px; 
+    background-color: White; 
+    color:Black; 
 }

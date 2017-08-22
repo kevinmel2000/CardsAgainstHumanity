@@ -41,12 +41,10 @@
             Judge Name: <span id='judgeName'></span>
         </div>
         
-        <div id='blackCard' class='blackcard'> 
+        <div id='cards'>
+            <div id='blackCard' class='largeblackcard'></div>
         </div>
-
-        <div id='selectedCards' style='float:left'>
-        </div>
-        
+       
         
     </body>
 </html>

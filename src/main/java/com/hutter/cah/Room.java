@@ -138,18 +138,8 @@ public class Room {
         // Deal cards and notify players
         dealCards();
         
-        // Draw a black card and display it on screen
+        // Draw a black card and display it on screen & to judge
         drawBlackCard();
-               
-        // Notify judge to wait until all cards selected
-        
-        // Notify players to select a card
-        
-        // Display selected cards on the screen
-        
-        // Notify judge to pick a winning card
-        
-        // Give points to winner
     }
     
     private void selectJudge()
@@ -231,5 +221,35 @@ public class Room {
         m.setText(pickedBlackCard.text);
         m.setCards(null);
         this.pushNotification(m);
+        
+        // Send the card to the judge player also
+        m = new Message();
+        m.setRoomCode(roomCode);
+        m.setType("Picked Black Card");
+        m.setName(this.players.get(judgeIndex).getName());
+        m.setText(pickedBlackCard.text);
+        m.setCards(null);
+        this.players.get(judgeIndex).pushNotification(m);
     }
+    
+    public void giveJudgeAnswerCard(Message request)
+    {
+        Message m = new Message();
+        m.setRoomCode(roomCode);
+        m.setType("Give Card To Judge");
+        m.setName(this.players.get(judgeIndex).getName());
+        m.setText(request.getName());
+        m.setCards(request.getCards());
+        this.players.get(judgeIndex).pushNotification(m);
+        
+        // Also send this card to the room for display to all players
+        m = new Message();
+        m.setRoomCode(roomCode);
+        m.setType("Give Card To Judge");
+        m.setName("server");
+        m.setText(request.getName());
+        m.setCards(request.getCards());
+        this.pushNotification(m);
+    }
+    
 }

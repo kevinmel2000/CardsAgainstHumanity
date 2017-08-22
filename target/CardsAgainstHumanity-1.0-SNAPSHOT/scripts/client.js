@@ -64,14 +64,15 @@ function getMessage() {
 
             if (message.type === "Cards Dealt")
             {
-                $('#card0').html("[1] " + message.cards[0].text);
-                $('#card1').html("[2] " + message.cards[1].text);
-                $('#card2').html("[3] " + message.cards[2].text);
-                $('#card3').html("[4] " + message.cards[3].text);
-                $('#card4').html("[5] " + message.cards[4].text);
-                $('#card5').html("[6] " + message.cards[5].text);
-                $('#card6').html("[7] " + message.cards[6].text);
-                $("#cards").show();
+                $('#card0').html("<input type='checkbox' name='choice' value='" + message.cards[0].id + "' txt='" + message.cards[0].text + "'>" + message.cards[0].text);
+                $('#card1').html("<input type='checkbox' name='choice' value='" + message.cards[1].id + "' txt='" + message.cards[1].text + "'>" + message.cards[1].text);
+                $('#card2').html("<input type='checkbox' name='choice' value='" + message.cards[2].id + "' txt='" + message.cards[2].text + "'>" + message.cards[2].text);
+                $('#card3').html("<input type='checkbox' name='choice' value='" + message.cards[3].id + "' txt='" + message.cards[3].text + "'>" + message.cards[3].text);
+                $('#card4').html("<input type='checkbox' name='choice' value='" + message.cards[4].id + "' txt='" + message.cards[4].text + "'>" + message.cards[4].text);
+                $('#card5').html("<input type='checkbox' name='choice' value='" + message.cards[5].id + "' txt='" + message.cards[5].text + "'>" + message.cards[5].text);
+                $('#card6').html("<input type='checkbox' name='choice' value='" + message.cards[6].id + "' txt='" + message.cards[6].text + "'>" + message.cards[6].text);
+                $("#judgeDisplay").hide();
+                $("#playerDisplay").show();
             }
             
             if (message.type === "All Players In")
@@ -82,7 +83,24 @@ function getMessage() {
             if (message.type === "You Are Judge")
             {
                 $("#status").html("You are the judge in this round. Please wait while all players select their choice card.");
-                $("#cards").hide();
+                $("#judgeDisplay").show();
+                $("#playerDisplay").hide();
+            }
+            
+            if (message.type === "Picked Black Card")
+            {
+                $('#blackCard').html(message.text);
+            }
+            
+            if (message.type === "Give Card To Judge")
+            {
+                var div = "<div id='answerCard' class='smallwhitecard'>";
+                      div += "<input type='checkbox' name='choice' value='" + message.cards[0].id + "'";
+                      div += " txt='" + message.cards[0].text + "'";
+                      div += " player='" + message.text + "'";
+                      div += ">" + message.cards[0].text;
+                   div += "</div>";
+                $('#answerCardSelectionSubmit').before(div);
             }
 
         },
@@ -122,4 +140,26 @@ function allPlayersIn() {
     postMessage(request);
 }
 
+function submitSelection()
+{
+    var request = {};
+    request.type = "Cards Selected";
+    request.roomCode = roomCode;
+    request.name = name;
+    request.text = "";
+    request.cards = [];
+    
+    $('#playerDisplay input:checked').each(function() {
+        
+        var card = {};
+        card.id = $(this).val();
+        card.text = $(this).attr('txt');
+        request.cards.push(card);
+    });
+    
+    $('#cardSelectionSubmit').hide();
+    $('#status').html("Selection made. Waiting for other players.")
+    
+    postMessage(request);
+}
 
