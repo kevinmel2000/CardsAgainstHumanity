@@ -337,6 +337,22 @@ public class GameService {
 
             }
             
+            if(type.equals("Winning Cards Selected"))
+            {
+                int roomIndex = getRoomIndexByCode(request.getRoomCode());
+ 
+                // Update the player's last ping time so we know he is still active
+                GameService.ROOMS.get(roomIndex).getPlayer(request.getName()).setLastPing(LocalDateTime.now());
+                GameService.ROOMS.get(roomIndex).judgeSelectsWinningCard(request); 
+
+            }
+            
+            if (type.equals("Start New Round"))
+            {
+                int roomIndex = getRoomIndexByCode(request.getRoomCode());
+                GameService.ROOMS.get(roomIndex).playGame();  
+            }
+            
             return response;
         }
 }

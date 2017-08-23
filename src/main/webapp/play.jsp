@@ -23,10 +23,10 @@
 
         <div id='userInfo'>
             <div>
-                Your Name: <input id='name' type="text" />
+                <label>Your Name:</label><input class="login" id='name' type="text" />
             </div>
             <div>
-                Room Code: <input id='roomCode' type="text" />  
+                <label>Room Code:</label><input class="login" id='roomCode' type="text" />  
             </div>
             <div>
                 <input id="joinRoom" type="Submit" onClick='joinRoom()' />
@@ -37,22 +37,14 @@
             </div>   
         </div>
 
-        <div id='playerDisplay' style='display:none'>
-            <div>
-                <div id='card0' class='smallwhitecard'></div>
-                <div id='card1' class='smallwhitecard'></div>
-                <div id='card2' class='smallwhitecard'></div>
-                <div id='card3' class='smallwhitecard'></div>
-                <div id='card4' class='smallwhitecard'></div>
-                <div id='card5' class='smallwhitecard'></div>
-                <div id='card6' class='smallwhitecard'></div>    
-            </div>
+        <div id='playerDisplay' style='display:none'>  
             <input id="cardSelectionSubmit" type="Submit" onClick="submitSelection()" />
         </div>
         
         <div id='judgeDisplay' style='display:none'>
             <div id='blackCard' class='smallblackcard'></div>
-            <input id="answerCardSelectionSubmit" type="Submit" onClick="submitSelection()" />
+            <input id="winningCardsSelectionSubmit" type="Submit" onClick="submitWinningCardsSelection()" />
+            <input id='judgeStartNewRound' type="button" value="Start New Round" onClick='startNewRound()' />
         </div>
         
     </body>

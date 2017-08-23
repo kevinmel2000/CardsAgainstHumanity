@@ -16,35 +16,32 @@
         <script src="scripts/server.js"></script>
     </head>
     <body>
-        <div style='float:left'>
-            <img src='images/logo.png' />
-        </div>
 
-        <div style='float:left; margin-left:20px;'>
-            <p>Please use your mobile device and go to the following url to join this room:</p>
-            <span id='host'></span>            
-            <h3>Room Code: <span id='roomCode'></span></h3>
-        </div>
-        
-        <div style='clear:both; padding-top: 20px'>
-            <h3>Logged In Players<h3>
-            <div >
-                <table id="players">
-                    <tr><th>Player</th><th>Score</th></tr>
-                </table>
+
+        <div id='header'>
+            <div id='logoSection'>
+                <img src='images/logo.png' />
+            </div>
+            <div id='statusSection'>
+                <p>Please use your mobile device and go to the following url to join this room:</p>
+                <span id='host'></span>            
+                <h4>Room Code: <span id='roomCode'></span></h4>
+                <h4>Server status: <span id='status'></span></h4>
             </div>
         </div>
-        <div>
-            Server status: <span id='status'></span>
-        </div>       
-        <div>
-            Judge Name: <span id='judgeName'></span>
-        </div>
         
-        <div id='cards'>
-            <div id='blackCard' class='largeblackcard'></div>
-        </div>
-       
+        <div>
+            <div id='scoreSection'>
+                <div class='tableHeader'>Logged In Players</div>
+                <div >
+                    <table id="playersTable">
+                        <tr><th>Judge</th><th>Player</th><th>Score</th></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div id='cards'></div>
+       </div>
         
     </body>
 </html>

@@ -130,8 +130,33 @@ public class Room {
         whiteDeck.add(c);
     }
 
+    public void addToPlayerScore(String name)
+    {
+        for(int x=0; x<players.size(); x++)
+        {
+            if (this.players.get(x).getName().equals(name))
+                this.players.get(x).setScore(this.players.get(x).getScore() + 1);
+        }
+    }
+    
+    public Player getPlayerByName(String name)
+    {
+        Player p = null;
+        
+        for(int x=0; x<players.size(); x++)
+        {
+            if (this.players.get(x).getName().equals(name))
+                p = this.players.get(x);
+        }
+        
+        return p;
+    }
+    
     public void playGame()
     {
+        // Reset all devices
+        resetDevices();
+        
         // Select a judge
         selectJudge();
         
@@ -140,6 +165,28 @@ public class Room {
         
         // Draw a black card and display it on screen & to judge
         drawBlackCard();
+    }
+    
+    private void resetDevices()
+    {
+        // Tell devices to clean up for next round
+        for(int playerIndex=0; playerIndex< this.players.size(); playerIndex++)
+        {
+            Message m = new Message();
+            m.setRoomCode(roomCode);
+            m.setType("Reset Device");
+            m.setName(this.players.get(playerIndex).getName());
+            m.setCards(null);
+            this.players.get(playerIndex).pushNotification(m);
+         }
+        
+        // Server too
+        Message m = new Message();
+        m.setRoomCode(roomCode);
+        m.setType("Reset Device");
+        m.setName("server");
+        m.setCards(null);
+        this.pushNotification(m);
     }
     
     private void selectJudge()
@@ -234,6 +281,8 @@ public class Room {
     
     public void giveJudgeAnswerCard(Message request)
     {
+        //TODO: remove card from players hand for next draw
+        
         Message m = new Message();
         m.setRoomCode(roomCode);
         m.setType("Give Card To Judge");
@@ -252,4 +301,29 @@ public class Room {
         this.pushNotification(m);
     }
     
+    public void judgeSelectsWinningCard(Message request)
+    {
+        Message m = new Message();
+        m.setRoomCode(roomCode);
+        m.setType("Notify Winner");
+        m.setName("server");
+        m.setText(request.getText());
+        m.setCards(request.getCards());
+        this.pushNotification(m);
+        
+        // Add to score
+        addToPlayerScore(request.getText());
+        
+        m = new Message();
+        m.setRoomCode(roomCode);
+        m.setType("Update Score");
+        m.setName("server");
+        
+        String name = getPlayerByName(request.getText()).getName();
+        String score = Integer.toString(getPlayerByName(request.getText()).getScore());
+        
+        m.setText(name + "," + score);
+        m.setCards(null);
+        this.pushNotification(m);
+    }
 }

@@ -7,8 +7,13 @@ and open the template in the editor.
     Created on : Aug 18, 2017, 1:44:44 PM
     Author     : scott
 */
-
+body {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
 .largeblackcard {
+    border-radius: 10px;
     margin-left: 10px;
     border:1px solid black; 
     padding: 30px 10px 5px 10px; 
@@ -20,6 +25,7 @@ and open the template in the editor.
 }
 
 .largewhitecard {
+    border-radius: 10px;
     margin-left: 10px;
     border:1px solid black; 
     padding: 30px 10px 5px 10px; 
@@ -42,4 +48,78 @@ and open the template in the editor.
     padding: 10px 10px 10px 10px; 
     background-color: White; 
     color:Black; 
+}
+
+.hiddenPlayerName {
+    
+    display:none;
+    
+}
+
+.tableHeader {
+    background-color:black; 
+    color:white; 
+    padding: 5px 5px 5px 5px; 
+    text-align:center;
+}
+
+#header {
+     border: 1px black solid;
+     height: 157px;
+     width: 100%;
+}
+
+#logoSection {
+    float:left;
+}
+
+#statusSection {
+    float:left; 
+    padding: 10px 10px 10px 10px;
+}
+
+#scoreSection {
+    clear:both; 
+    float:left; 
+    padding-right:40px;
+}
+
+
+#playersTable {
+    border: 1px black solid; 
+    width: 240px;
+    border-collapse: separate;
+    border-spacing: 0px;
+}
+
+#playersTable th {
+    border: 1px black solid;
+    padding: 5px 5px 5px 5px;
+}
+
+#playersTable td {
+    border: 1px black solid;
+    padding: 5px 5px 5px 5px;
+}
+
+label
+{
+    width: 6em;
+    float: left;
+    text-align: left;
+    margin-right: 0.5em;
+    display: block
+}
+
+.login input {
+   margin-left: 4.5em; 
+}
+
+#waitingOnOthers {
+    margin-top: 20px;
+}
+
+#judgeStartNewRound {
+    
+    display:none;
 }

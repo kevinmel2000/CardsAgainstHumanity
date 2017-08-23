@@ -88,30 +88,65 @@ function getMessage() {
 
             if (message.type === "Player Joined")
             {
-                $("#players tr:last").after("<tr><td>" + message.text + "</td><td id='score-" + message.text + "' align=center>0</td>");
+                var judgeCell = "<td class='judgeScoreClass' id='judge-" + message.text + "' align=center></td>";
+                var nameCell  = "<td>" + message.text + "</td>";
+                var scoreCell = "<td id='score-" + message.text + "' align=center>0</td>";
+                
+                $("#playersTable tr:last").after("<tr>" + judgeCell + nameCell + scoreCell + "</tr>");
             }
 
             if (message.type === "Picked Black Card")
             {
-                $("#blackCard").html(message.text);
+                var blackCard = "<div id='blackCard' class='largeblackcard'>" + message.text + "</div>";
+                $("#cards").html(blackCard);
             }
             
             if (message.type === "Judge Selected")
             {
-                $("#judgeName").html(message.text);
+                var judgeSelector = "#judge-" + message.text;
+                $(judgeSelector).html("*");
             }
             
             if (message.type === "Give Card To Judge")
             {
-                var div = "<div id='answerCard' class='largewhitecard'";
-                      div += " value='" + message.cards[0].id + "'";
-                      div += " txt='" + message.cards[0].text + "'";
-                      div += " player='" + message.text + "'";
-                      div += ">" + message.cards[0].text;
+                var div = "<div id='answerCard' class='largewhitecard' style='position:relative'";
+                        div += " value='" + message.cards[0].id + "'";
+                        div += " txt='" + message.cards[0].text + "'";
+                        div += " player='" + message.text + "'";
+                        div += ">" + message.cards[0].text;
+                   
+                        // player name
+                        div += "<div class='hiddenPlayerName' style='margin-top:200px; text-align:center'>" + message.text + "</div>";
                    div += "</div>";
                    
                 $('#blackCard').after(div);
             }
+            
+            if (message.type === "Notify Winner")
+            {
+                // Display checkmark on winning card
+                var winningCard =  ".largewhitecard[player='" + message.text + "']";
+                $(winningCard).append("<div style='position:absolute; bottom:0; display:block; margin:auto;'><img src='images/checkmark.png'></div>");
+                
+                // Show player names
+                $(".hiddenPlayerName").show();
+                
+            }
+            
+            if (message.type === "Update Score")
+            {
+                var vals = message.text.split(",");
+                var selector = "#score-" + vals[0];
+                $(selector).html(vals[1]);
+            }
+            
+            if (message.type === "Reset Device")
+            {
+                $('largewhitecard').remove();
+                $('#blackCard').remove();
+                $("#playersTable td[class='judgeScoreClass']").html(""); 
+            }
+            
 
         },
         error: function( jqXhr, textStatus, errorThrown ){

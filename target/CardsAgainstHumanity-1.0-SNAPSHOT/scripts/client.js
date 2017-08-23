@@ -24,6 +24,7 @@ function postMessage(message) {
         if (message.type === "Join Room")
         {
              roomCode = message.roomCode;
+             roomCode = roomCode.toUpperCase();
              $('#status').html(message.text);
              $("#joinRoom").hide();
         }
@@ -64,13 +65,16 @@ function getMessage() {
 
             if (message.type === "Cards Dealt")
             {
-                $('#card0').html("<input type='checkbox' name='choice' value='" + message.cards[0].id + "' txt='" + message.cards[0].text + "'>" + message.cards[0].text);
-                $('#card1').html("<input type='checkbox' name='choice' value='" + message.cards[1].id + "' txt='" + message.cards[1].text + "'>" + message.cards[1].text);
-                $('#card2').html("<input type='checkbox' name='choice' value='" + message.cards[2].id + "' txt='" + message.cards[2].text + "'>" + message.cards[2].text);
-                $('#card3').html("<input type='checkbox' name='choice' value='" + message.cards[3].id + "' txt='" + message.cards[3].text + "'>" + message.cards[3].text);
-                $('#card4').html("<input type='checkbox' name='choice' value='" + message.cards[4].id + "' txt='" + message.cards[4].text + "'>" + message.cards[4].text);
-                $('#card5').html("<input type='checkbox' name='choice' value='" + message.cards[5].id + "' txt='" + message.cards[5].text + "'>" + message.cards[5].text);
-                $('#card6').html("<input type='checkbox' name='choice' value='" + message.cards[6].id + "' txt='" + message.cards[6].text + "'>" + message.cards[6].text);
+                for (var x=0; x<7; x++)
+                {
+                    var div = "<div class='smallwhitecard'>";
+                         div += "<input type='checkbox' name='choice' value='" + message.cards[0].id + "'";
+                         div += " txt='" + message.cards[x].text + "'";
+                         div += ">" + message.cards[x].text;
+                      div += "</div>";
+                   $('#cardSelectionSubmit').before(div);                   
+                }
+
                 $("#judgeDisplay").hide();
                 $("#playerDisplay").show();
             }
@@ -100,7 +104,18 @@ function getMessage() {
                       div += " player='" + message.text + "'";
                       div += ">" + message.cards[0].text;
                    div += "</div>";
-                $('#answerCardSelectionSubmit').before(div);
+                $('#winningCardsSelectionSubmit').before(div);
+            }
+            
+            if (message.type === "Reset Device")
+            {
+                $('#status').html("New round");
+                $('#judgeStartNewRound').hide();
+                $("#playerDisplay").hide();
+                $("#judgeDisplay").hide();
+                $('#cardSelectionSubmit').show();
+                $('#winningCardsSelectionSubmit').show();
+                $("div[class='smallwhitecard']").remove();
             }
 
         },
@@ -114,18 +129,25 @@ function getMessage() {
 
 function joinRoom()
 {
+    // Converts input to uppercase
     name = $('#name').val();
+    name = name.toUpperCase();
+    $('#name').val(name);
     
+    var attemptedRoomCode = $('#roomCode').val();
+    attemptedRoomCode = attemptedRoomCode.toUpperCase();
+    $('#roomCode').val(attemptedRoomCode);
+        
     var request = {};
     request.type = "Join Room";
     request.roomCode = "";
     request.name = name;
-    request.text = $('#roomCode').val();
+    request.text = attemptedRoomCode;
     request.card = null;
     
     postMessage(request);
     
-    setInterval(getMessage, 3000);
+    setInterval(getMessage, 1000);
 }
 
 function allPlayersIn() {
@@ -158,8 +180,45 @@ function submitSelection()
     });
     
     $('#cardSelectionSubmit').hide();
-    $('#status').html("Selection made. Waiting for other players.")
+    $('#status').html("Selection made. Waiting for other players.");
     
     postMessage(request);
 }
 
+function submitWinningCardsSelection()
+{
+    var request = {};
+    request.type = "Winning Cards Selected";
+    request.roomCode = roomCode;
+    request.name = name;
+    request.cards = [];
+    
+    $('#judgeDisplay input:checked').each(function() {
+        
+        var card = {};
+        card.id = $(this).val();
+        card.text = $(this).attr('txt');
+        request.cards.push(card);
+        request.text = $(this).attr('player');
+    });
+    
+    $('#winningCardsSelectionSubmit').hide();
+    $('#status').html("Player: " + request.text + " wins!");
+    $('#judgeStartNewRound').show();
+    
+    postMessage(request);
+}
+
+function startNewRound()
+{
+    var request = {};
+    request.type = "Start New Round";
+    request.roomCode = roomCode;
+    request.name = name;
+    request.text = "";
+    request.cards = [];
+    
+    $('#judgeStartNewRound').hide();
+    
+    postMessage(request);
+}
