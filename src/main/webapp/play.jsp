@@ -47,5 +47,14 @@
             <input id='judgeStartNewRound' type="button" value="Start New Round" onClick='startNewRound()' />
         </div>
         
+        <div id='restartGame'>
+            <h3>Restart The Game</h3>
+            Are you sure?<br />
+            <input id='restartButton' type='radio' name='restart' value='yes'>Yes<br />
+            <input id='restartButton' type='radio' name='restart' value='no'>No<br/>
+            <br />
+            <input type='button' value='Select' onClick='restartGame()'>
+        </div>
+        <input style='display:none' type='button' value='RESTART GAME' onClick='confirmRestartGame()'>
     </body>
 </html>

@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 /**
  *
@@ -195,6 +197,15 @@ public class Room {
         if (judgeIndex > this.players.size()-1)
             judgeIndex = 0;
         
+        for (int x=0;x<this.players.size()-1; x++)
+        {
+            if (x != judgeIndex)
+                this.players.get(x).setIsJudge(false);
+            else
+                this.players.get(x).setIsJudge(true);
+        }
+        
+        
         Message m = new Message();
         m.setRoomCode(roomCode);
         m.setType("You Are Judge");
@@ -232,7 +243,7 @@ public class Room {
             if (playerIndex != judgeIndex)
             {
                 // Draw 7 cards for the player
-               for (int counter=0; counter<7; counter++)
+               for (int counter=this.players.get(playerIndex).getCardCount(); counter<7; counter++)
                {
                   int randomDeckCardIndex = r.nextInt(whiteDeck.size());
 
@@ -299,6 +310,25 @@ public class Room {
         m.setText(request.getName());
         m.setCards(request.getCards());
         this.pushNotification(m);
+        
+        // remove the chosen cards from player's hand
+        Player p = getPlayerByName(request.getName());
+        for(int z=0; z< p.getCards().size(); z++)
+        {
+            Card cardInHand = p.getCards().get(z);
+            
+            for(int v=0; v< request.getCards().size(); v++)
+            {
+                JSONArray turnedInCards = (JSONArray)request.getCards();
+                JSONObject turnedInCard = (JSONObject) turnedInCards.get(0);
+                String turnedInCardId = (String)turnedInCard.get("id");
+                
+                if (cardInHand.id.equals(turnedInCardId))
+                    p.getCards().remove(z);
+            }           
+        }
+        
+        
     }
     
     public void judgeSelectsWinningCard(Message request)
@@ -325,5 +355,28 @@ public class Room {
         m.setText(name + "," + score);
         m.setCards(null);
         this.pushNotification(m);
+    }
+    
+    public void restartGame()
+    {
+        // Tell server to restart
+        Message m = new Message();
+        m.setRoomCode(this.roomCode);
+        m.setName("server");
+        m.setType("Start New Game");
+        m.setText("");
+        m.setCards(null); 
+        this.pushNotification(m);
+        
+        for(int x=0; x< this.players.size(); x++)
+        {
+            m.setRoomCode(this.roomCode);
+            m.setName(this.players.get(x).getName());
+            m.setType("Start New Game");
+            m.setText("");
+            m.setCards(null); 
+            this.players.get(x).pushNotification(m);
+        }
+                
     }
 }

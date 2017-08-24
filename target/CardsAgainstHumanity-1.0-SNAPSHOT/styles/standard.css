@@ -37,6 +37,7 @@ body {
 }
 
 .smallblackcard {
+    border-radius: 10px;
     border:1px solid black; 
     padding: 10px 10px 10px 10px; 
     background-color: Black; 
@@ -44,6 +45,7 @@ body {
 }
 
 .smallwhitecard {
+    border-radius: 10px;
     border:1px solid black; 
     padding: 10px 10px 10px 10px; 
     background-color: White; 
@@ -120,6 +122,19 @@ label
 }
 
 #judgeStartNewRound {
-    
     display:none;
+    margin-top: 20px;
+}
+
+#restartGame {
+    position:absolute;
+    border-radius: 10px;
+    background-color:black;
+    color:white;
+    top:170px;
+    left:20px;
+    display:none;
+    border: 1px black solid;
+    padding: 5px 5px 20px 40px;
+    width: 300px;
 }

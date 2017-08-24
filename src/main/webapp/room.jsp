@@ -35,7 +35,10 @@
                 <div class='tableHeader'>Logged In Players</div>
                 <div >
                     <table id="playersTable">
-                        <tr><th>Judge</th><th>Player</th><th>Score</th></tr>
+                        <thead>
+                            <tr><th>Judge</th><th>Player</th><th>Score</th></tr>
+                        </thead>
+                        <tbody></tbody>
                     </table>
                 </div>
             </div>

@@ -61,7 +61,7 @@ public class GameService {
         //
         // Helper methods
         //
-        
+                
         private String generateRoomCode()
         {
             Random r = new Random();
@@ -225,6 +225,13 @@ public class GameService {
                 response.setType("Get Room Code");
                 response.setText(GameService.ROOMS.get(0).getRoomCode());
                 response.setCards(null);    
+            }
+            
+            if (request.getType().equals("Start New Game"))
+            {
+                int roomIndex = getRoomIndexByCode(request.getRoomCode());
+                GameService.ROOMS.get(roomIndex).restartGame(); 
+                GameService.ROOMS.remove(roomIndex);
             }
             
             return response;

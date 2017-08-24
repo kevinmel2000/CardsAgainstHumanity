@@ -4,9 +4,15 @@ var api = "/api/v1/com";
     
  $(document).ready(function() {
 
+    startNewGame(roomCode);
+
+ });
+ 
+ function startNewGame(roomCode) 
+ {
      // Get an available room code
      var message = {};
-     message.roomCode = "";
+     message.roomCode = roomCode;
      message.name = "server";
      message.type = "Get Room Code";
      message.text = "";
@@ -17,9 +23,9 @@ var api = "/api/v1/com";
      $("#host").html("<a href='" + hostUrl + "/play.jsp'>" + hostUrl + "/play.jsp</a>");
 
      setInterval(getMessage, 1000);
-
- });
-
+ }
+ 
+ 
 function postMessage(message) {
     
         var host = hostUrl + api;
@@ -38,20 +44,11 @@ function postMessage(message) {
             
             if (message.type === "Get Room Code")
             {
-                $('#roomCode').html(message.text);
                 roomCode = message.text;
+                $('#roomCode').html(roomCode);
+                $('#cards').html("");
+                $('#playersTable tbody').empty();
             }
-            
-            if (message.type === "Player Joined")
-            {               
-                $('#players').append(message.text + "<br />");
-            }
-            
-            if (message.type === "Black Card Dealt")
-            {
-                displayBlackCard();
-            }
-            
         },
         error: function( jqXhr, textStatus, errorThrown ){
             $('#status').html(textStatus);
@@ -92,7 +89,7 @@ function getMessage() {
                 var nameCell  = "<td>" + message.text + "</td>";
                 var scoreCell = "<td id='score-" + message.text + "' align=center>0</td>";
                 
-                $("#playersTable tr:last").after("<tr>" + judgeCell + nameCell + scoreCell + "</tr>");
+                $("#playersTable tbody").append("<tr>" + judgeCell + nameCell + scoreCell + "</tr>");
             }
 
             if (message.type === "Picked Black Card")
@@ -145,6 +142,11 @@ function getMessage() {
                 $('largewhitecard').remove();
                 $('#blackCard').remove();
                 $("#playersTable td[class='judgeScoreClass']").html(""); 
+            }
+            
+            if (message.type === "Start New Game")
+            {
+                startNewGame(roomCode);
             }
             
 

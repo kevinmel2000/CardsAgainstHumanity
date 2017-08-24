@@ -68,8 +68,8 @@ function getMessage() {
                 for (var x=0; x<7; x++)
                 {
                     var div = "<div class='smallwhitecard'>";
-                         div += "<input type='checkbox' name='choice' value='" + message.cards[0].id + "'";
-                         div += " txt='" + message.cards[x].text + "'";
+                         div += "<input type='checkbox' name='choice' value='" + message.cards[x].id + "'";
+                         div += " txt=\"" + message.cards[x].text + "\"";
                          div += ">" + message.cards[x].text;
                       div += "</div>";
                    $('#cardSelectionSubmit').before(div);                   
@@ -100,7 +100,7 @@ function getMessage() {
             {
                 var div = "<div id='answerCard' class='smallwhitecard'>";
                       div += "<input type='checkbox' name='choice' value='" + message.cards[0].id + "'";
-                      div += " txt='" + message.cards[0].text + "'";
+                      div += " txt=\"" + message.cards[0].text + "\"";
                       div += " player='" + message.text + "'";
                       div += ">" + message.cards[0].text;
                    div += "</div>";
@@ -116,6 +116,11 @@ function getMessage() {
                 $('#cardSelectionSubmit').show();
                 $('#winningCardsSelectionSubmit').show();
                 $("div[class='smallwhitecard']").remove();
+            }
+            
+            if (message.type === "Start New Game")
+            {
+                location.reload();
             }
 
         },
@@ -221,4 +226,27 @@ function startNewRound()
     $('#judgeStartNewRound').hide();
     
     postMessage(request);
+}
+
+function confirmRestartGame() 
+{
+    $('#restartGame').show();
+}
+
+function restartGame()
+{
+    var answer = $('input[name=restart]:checked').val();
+    $('#restartGame').hide();
+    
+    if(answer === "yes")
+    {
+        var request = {};
+        request.type = "Start New Game";
+        request.roomCode = roomCode;
+        request.name = "server";
+        request.text = "";
+        request.cards = [];
+
+        postMessage(request);
+    }
 }
