@@ -49,14 +49,14 @@
         </div>
 
         <div id='playerDisplay' style='display:none'>
-            <div id='blackCard' class='smallblackcard'></div>
+            <div class='smallblackcard'></div>
             <div id='playerActionButtons' class='actionButtons'>
                <input id="cardSelectionSubmit" type="Submit" onClick="submitSelection()" /> 
             </div>
         </div>
         
         <div id='judgeDisplay' style='display:none'>
-            
+            <div class='smallblackcard'></div>
             <div id='judgeActionButtons' class='actionButtons'>
                 <input id="winningCardsSelectionSubmit" type="Submit" onClick="submitWinningCardsSelection()" />
                 <div id='judgeStartNewRound'>

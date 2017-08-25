@@ -110,15 +110,15 @@ function getMessage() {
             
             if (message.type === "You Are Judge")
             {
-                $("#status").html("You are the judge in this round. Please wait while all players select their choice card.");
+                $("#status").html("You are the judge in this round.");
                 $("#judgeDisplay").show();
                 $("#playerDisplay").hide();
             }
             
             if (message.type === "Picked Black Card")
             {
-                $("#status").html("You are the judge in this round. Players pick " + message.cards[0].pick + " card(s).");
-                $('#blackCard').html(message.cards[0].text);
+                $("#status").append(" Players pick " + message.cards[0].pick + " card(s).");
+                $('.smallblackcard').html(message.cards[0].text);
             }
             
             if (message.type === "Give Card To Judge")

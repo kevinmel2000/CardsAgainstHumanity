@@ -331,14 +331,18 @@ public final class Room {
         m.setCards(cards);
         this.pushNotification(m);
         
-        // Send the card to the judge player also
-        m = new Message();
-        m.setRoomCode(roomCode);
-        m.setType("Picked Black Card");
-        m.setName(this.players.get(judgeIndex).getName());
-        m.setText("");
-        m.setCards(cards);
-        this.players.get(judgeIndex).pushNotification(m);
+        // Send the card to the players
+        for (int x=0;x<this.players.size(); x++)
+        {
+            m = new Message();
+            m.setRoomCode(roomCode);
+            m.setType("Picked Black Card");
+            m.setName(this.players.get(x).getName());
+            m.setText("");
+            m.setCards(cards);
+            this.players.get(x).pushNotification(m);
+        }
+
     }   
     
     private void dealCards()
