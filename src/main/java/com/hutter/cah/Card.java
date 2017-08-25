@@ -12,6 +12,7 @@ package com.hutter.cah;
 public class Card {
 
 	String id;
+        String pick;
 	String text;
 
 	public String getId() {
@@ -28,6 +29,14 @@ public class Card {
 
 	public void setText(String text) {
 		this.text = text;
+	}
+        
+        public String getPick() {
+		return pick;
+	}
+
+	public void setPick(String pick) {
+		this.pick = pick;
 	}
 
 	@Override

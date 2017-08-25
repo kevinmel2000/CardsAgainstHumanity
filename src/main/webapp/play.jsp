@@ -18,7 +18,7 @@
     </head>
     <body>       
         <div>
-            <img src='images/logo-mobile.png' />
+            <img src='images/logo-mobile.png' onclick="confirmRestartGame()" />
         </div>
 
         <div id='userInfo'>
@@ -29,22 +29,24 @@
                 <label>Room Code:</label><input class="login" id='roomCode' type="text" />  
             </div>
             <div>
-                <input id="joinRoom" type="Submit" onClick='joinRoom()' />
+                <input id="joinRoomButton"     type="button" value="Join Room"       onClick='joinRoom()' />
+                <input id="allPlayersInButton" type="button" value="All Players In!" onClick='allPlayersIn()' />
+                <div id='status' style='margin-top:5px'></div>  
             </div> 
-            <div id='status'></div>
-            <div id='waitingOnOthers'>
-                <input id='allInButton' type="button" value="All Players In!" onClick='allPlayersIn()' />
-            </div>   
         </div>
 
-        <div id='playerDisplay' style='display:none'>  
-            <input id="cardSelectionSubmit" type="Submit" onClick="submitSelection()" />
+        <div id='playerDisplay' style='display:none'>
+            <div id='playerActionButtons' class='actionButtons'>
+               <input id="cardSelectionSubmit" type="Submit" onClick="submitSelection()" /> 
+            </div>
         </div>
         
         <div id='judgeDisplay' style='display:none'>
             <div id='blackCard' class='smallblackcard'></div>
-            <input id="winningCardsSelectionSubmit" type="Submit" onClick="submitWinningCardsSelection()" />
-            <input id='judgeStartNewRound' type="button" value="Start New Round" onClick='startNewRound()' />
+            <div id='judgeActionButtons' class='actionButtons'>
+                <input id="winningCardsSelectionSubmit" type="Submit" onClick="submitWinningCardsSelection()" />
+                <input id='judgeStartNewRound' type="button" value="Start New Round" onClick='startNewRound()' />
+            </div>
         </div>
         
         <div id='restartGame'>

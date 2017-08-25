@@ -22,6 +22,10 @@
             <div id='logoSection'>
                 <img src='images/logo.png' />
             </div>
+            <div id='generateRoomSection'>
+                <p>Click the button below to create a new game room.</p>
+                <input type='button' value="Create Room" onClick='createRoom()' />
+            </div>
             <div id='statusSection'>
                 <p>Please use your mobile device and go to the following url to join this room:</p>
                 <span id='host'></span>            

@@ -7,7 +7,6 @@ package com.hutter.cah;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ws.rs.Consumes;
@@ -20,9 +19,6 @@ import javax.ws.rs.core.Response;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import java.io.*;
-import org.json.simple.JSONArray;
-//import org.json.simple.JSONValue;
 
 
 /**
@@ -34,46 +30,13 @@ public class GameService {
 
         private static final ArrayList<Room> ROOMS = new ArrayList<Room>();
     
-        //
-        // Constructor 
-        //
-        
+        // Constructor       
         public GameService()
         {
-            if(GameService.ROOMS.isEmpty())
-            {
-                String whiteDeckString = getDeckFromFile("whiteDeck.json");
-                ArrayList<Card> whiteDeck = getCardsFromJSONString(whiteDeckString);
-                
-                String blackDeckString = getDeckFromFile("blackDeck.json");
-                ArrayList<Card> blackDeck = getCardsFromJSONString(blackDeckString);
-                
-                String roomCode = generateRoomCode();
 
-                Room room = new Room();
-                room.setRoomCode(roomCode);
-                room.setWhiteDeck(whiteDeck);
-                room.setBlackDeck(blackDeck);
-                GameService.ROOMS.add(room);                
-            }
         }
         
-        //
         // Helper methods
-        //
-                
-        private String generateRoomCode()
-        {
-            Random r = new Random();
-            String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            String roomCode = "";
-            for (int i = 0; i < 4; i++) {
-                roomCode += alphabet.charAt(r.nextInt(alphabet.length()));
-            }
-
-            return roomCode;
-        }
-        
         private int getRoomIndexByCode(String code)
         {          
             for(int x=0; x<GameService.ROOMS.size(); x++)
@@ -85,62 +48,7 @@ public class GameService {
             return -1;
         }
         
-        private String getDeckFromFile(String filename)
-        {
-            try {
-               InputStream f = this.getClass().getClassLoader().getResourceAsStream(filename);
-               InputStreamReader ir = new InputStreamReader(f);
-               BufferedReader br = new BufferedReader(ir); 
-               String text;
-               String json = "";
-               
-               while ((text = br.readLine()) != null) {
-                   json += text;
-               }
-               
-               return json;
-            }
-            catch (IOException ex)
-            {
-                Logger.getLogger(GameService.class.getName()).log(Level.SEVERE, null, ex);
-            }
-       
-            return null;
-        }        
-    
-        private ArrayList<Card> getCardsFromJSONString(String data)
-        {
-            ArrayList<Card> cards = new ArrayList<>();
-            
-            JSONParser  parser = new JSONParser();
-            try {
-                
-                JSONObject j = (JSONObject) parser.parse(data);
-                JSONArray jarray = (JSONArray)j.get("cards");
-                
-                for (int x = 0; x < jarray.size(); x++)
-                {
-                    JSONObject jsonCard = (JSONObject)jarray.get(x);
-                    
-                    Card c = new Card();
-                    c.setId((String)jsonCard.get("id"));  
-                    c.setText((String)jsonCard.get("text"));
-                    
-                    cards.add(c);
-                }
-                
-            } catch (ParseException ex) {
-                Logger.getLogger(GameService.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            return cards;
-        }
-        
-        //
         // Web service methods
-        //
-       
-        
         @POST
 	@Path("/com")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -187,12 +95,21 @@ public class GameService {
             Message response = new Message();
             String type = request.getType();
             
+            if(type.equals("Start New Game"))
+            {
+                int roomIndex = getRoomIndexByCode(request.getRoomCode());
+                GameService.ROOMS.get(roomIndex).restartGame();
+            }
+            
             if(type.equals("Get Message"))
             {
                 int roomIndex = getRoomIndexByCode(request.getRoomCode());
   
                 if(roomIndex >= 0)
                 {   
+                    // Remove any dropped players
+                    GameService.ROOMS.get(roomIndex).removeDroppedPlayers();
+                    
                     // Check for any pending messages
                     if (GameService.ROOMS.get(roomIndex).isNotificationPending() == true)
                     {
@@ -200,7 +117,7 @@ public class GameService {
                     }
                     else
                     {
-                        // Send a no message response
+                       // Send a no message response
                        response.setRoomCode(request.getRoomCode());
                        response.setName(request.getName());
                        response.setType(type);
@@ -217,23 +134,19 @@ public class GameService {
                     response.setCards(null); 
                 }
             }
-
-            if (request.getType().equals("Get Room Code"))
+    
+            if (request.getType().equals("Create Room"))
             {
-                response.setRoomCode(GameService.ROOMS.get(0).getRoomCode());
+                Room room = new Room();
+                GameService.ROOMS.add(room);
+                
+                response.setRoomCode(room.getRoomCode());
                 response.setName(request.getName());
-                response.setType("Get Room Code");
-                response.setText(GameService.ROOMS.get(0).getRoomCode());
-                response.setCards(null);    
+                response.setType(type);
+                response.setText(room.getRoomCode());
+                response.setCards(null); 
             }
-            
-            if (request.getType().equals("Start New Game"))
-            {
-                int roomIndex = getRoomIndexByCode(request.getRoomCode());
-                GameService.ROOMS.get(roomIndex).restartGame(); 
-                GameService.ROOMS.remove(roomIndex);
-            }
-            
+
             return response;
         }
         
@@ -258,26 +171,29 @@ public class GameService {
                     }
                     else
                     {
-                        // Create a player object and add it to the room
-                        Player p = new Player();
-                        p.setName(request.getName());
-                        GameService.ROOMS.get(roomIndex).addPlayer(p);
-                        GameService.ROOMS.get(roomIndex).getPlayer(request.getName()).setLastPing(LocalDateTime.now());
-                        
+                        if(GameService.ROOMS.get(roomIndex).getPlayer(request.getName()) == null)
+                        {
+                            // Create a player object and add it to the room
+                            Player p = new Player();
+                            p.setName(request.getName());
+                            GameService.ROOMS.get(roomIndex).addPlayer(p);
+                            GameService.ROOMS.get(roomIndex).getPlayer(request.getName()).setLastPing(LocalDateTime.now());  
+                           
+                            // Notify the room that a player has joined.
+                            Message m = new Message();
+                            m.setRoomCode(request.getRoomCode());
+                            m.setName("server");
+                            m.setType("Player Joined");
+                            m.setText(request.getName());
+                            GameService.ROOMS.get(roomIndex).pushNotification(m);
+                        }
+
                         // Create response object to confirm joining the room
                         response.setRoomCode(request.getText());
                         response.setName(request.getName());
                         response.setType(type);
                         response.setText("You have joined the room.");
                         response.setCards(null); 
-                        
-                        // Notify the room that a player has joined.
-                        Message m = new Message();
-                        m.setRoomCode(request.getRoomCode());
-                        m.setName("server");
-                        m.setType("Player Joined");
-                        m.setText(request.getName());
-                        GameService.ROOMS.get(roomIndex).pushNotification(m);
                     }
                 }
                 else
@@ -295,7 +211,7 @@ public class GameService {
             {
                 int roomIndex = getRoomIndexByCode(request.getRoomCode());
                 
-                GameService.ROOMS.get(roomIndex).setLock(true);
+                //GameService.ROOMS.get(roomIndex).setLock(true);
                 GameService.ROOMS.get(roomIndex).playGame();                  
 
             }
@@ -362,4 +278,5 @@ public class GameService {
             
             return response;
         }
+        
 }

@@ -1,31 +1,47 @@
+// Global variables available to all functions
 var roomCode = "";
 var hostUrl = "http://" + document.location.host + "/CAH";
 var api = "/api/v1/com";
-    
- $(document).ready(function() {
+var intervalId = 0;
+var pollInterval = 1000;
+var audio = new Audio('images/fanfare.wav');
 
-    startNewGame(roomCode);
 
- });
+// The ready function is always called as soon as the page is loaded
+$(document).ready(function() {
+
+    $('#generateRoomSection').show();
+
+});
  
- function startNewGame(roomCode) 
+function createRoom()
+{
+    $('#generateRoomSection').hide();
+    $('#statusSection').show();
+     
+    startNewGame("");
+}
+ 
+ function startNewGame() 
  {
-     // Get an available room code
-     var message = {};
-     message.roomCode = roomCode;
-     message.name = "server";
-     message.type = "Get Room Code";
-     message.text = "";
-     message.cards = null;
-     
-     postMessage(message);
-     
-     $("#host").html("<a href='" + hostUrl + "/play.jsp'>" + hostUrl + "/play.jsp</a>");
+    // Asks the server to create a new room and send us a room code
+    var message = {};
+    message.roomCode = "";
+    message.name = "server";
+    message.type = "Create Room";
+    message.text = "";
+    message.cards = null;
 
-     setInterval(getMessage, 1000);
+    postMessage(message);
+
+    $("#host").html("<a href='" + hostUrl + "/play.jsp'>" + hostUrl + "/play.jsp</a>");
+
+    // Enable the timer which will check for new server messages every second
+    intervalId = setInterval(getMessage, pollInterval);
  }
  
- 
+// Function to send a request to the server.  Responses are pulled
+// from the getMessage() function every interval
 function postMessage(message) {
     
         var host = hostUrl + api;
@@ -42,7 +58,7 @@ function postMessage(message) {
         {
             $('#status').html(message.type);
             
-            if (message.type === "Get Room Code")
+            if (message.type === "Create Room")
             {
                 roomCode = message.text;
                 $('#roomCode').html(roomCode);
@@ -57,6 +73,8 @@ function postMessage(message) {
     
 }
 
+// Once a room has been created, this function is
+// polled by the server page for new updates
 function getMessage() {
 
     var host = hostUrl + api;
@@ -78,23 +96,53 @@ function getMessage() {
         processData: false,
         success: function(message, textStatus, jQxhr)
         {
+            // this section handles the actual incoming messages
+            
             if (message.type === "Get Message")
             {
                 $('#status').html(message.text);
             }
+            
+            if (message.type === "Start New Game")
+            {
+                clearInterval(intervalId);
+                $('#generateRoomSection').show();
+                $('#statusSection').hide();
+                $('#playersTable tbody').empty();
+                $('#cards').empty();
+            }
 
             if (message.type === "Player Joined")
             {
-                var judgeCell = "<td class='judgeScoreClass' id='judge-" + message.text + "' align=center></td>";
-                var nameCell  = "<td>" + message.text + "</td>";
-                var scoreCell = "<td id='score-" + message.text + "' align=center>0</td>";
+                // Try to find if this player dropped and returned
+                var selector = "#playersTable td:contains('" + message.text + "')";
+                var foundReturningPlayer = $(selector);
                 
-                $("#playersTable tbody").append("<tr>" + judgeCell + nameCell + scoreCell + "</tr>");
+                if (foundReturningPlayer.length !== 0)
+                {
+                    // If player is returning, set name back to normal (it was italic)
+                    $(selector).html(message.text);
+                }
+                else
+                {
+                    // This is a new player. Add them to the list
+                    var judgeCell = "<td class='judgeScoreClass' id='judge-" + message.text + "' align=center></td>";
+                    var nameCell  = "<td>" + message.text + "</td>";
+                    var scoreCell = "<td id='score-" + message.text + "' align=center>0</td>";
+                
+                    $("#playersTable tbody").append("<tr>" + judgeCell + nameCell + scoreCell + "</tr>");
+                } 
+            }
+            
+            if (message.type === "Dropped Player")
+            {
+                var selector = "#playersTable td:contains('" + message.text + "')";
+                $(selector).html("<i>" + message.text + "</i>");
             }
 
             if (message.type === "Picked Black Card")
             {
-                var blackCard = "<div id='blackCard' class='largeblackcard'>" + message.text + "</div>";
+                var blackCard = "<div id='blackCard' class='largeblackcard'>" + message.cards[0].text + "</div>";
                 $("#cards").html(blackCard);
             }
             
@@ -106,16 +154,25 @@ function getMessage() {
             
             if (message.type === "Give Card To Judge")
             {
-                var div = "<div id='answerCard' class='largewhitecard' style='position:relative'";
-                        div += " value='" + message.cards[0].id + "'";
-                        div += " txt='" + message.cards[0].text + "'";
-                        div += " player='" + message.text + "'";
-                        div += ">" + message.cards[0].text;
-                   
-                        // player name
-                        div += "<div class='hiddenPlayerName' style='margin-top:200px; text-align:center'>" + message.text + "</div>";
-                   div += "</div>";
-                   
+                var topMargin = 0;
+                var div = "<div style='position:relative; float:left'>";
+                
+                for(var x=0;x<message.cards.length;x++)
+                {
+                    var cardDiv = "<div id='answerCard' class='largewhitecard' style='margin-top:" + topMargin + "px'";
+                            cardDiv += " value='" + message.cards[x].id + "'";
+                            cardDiv += " txt='" + message.cards[x].text + "'";
+                            cardDiv += " player='" + message.text + "'";
+                            cardDiv += ">" + message.cards[x].text;
+                            cardDiv += "</div>";
+                    
+                    div += cardDiv;
+                    topMargin = -120;
+                }
+                
+                // player name
+                div += "<div class='hiddenPlayerName' style='margin-top:0px; text-align:center'>" + message.text + "</div>";
+
                 $('#blackCard').after(div);
             }
             
@@ -127,6 +184,9 @@ function getMessage() {
                 
                 // Show player names
                 $(".hiddenPlayerName").show();
+                
+                // play sound
+                audio.play();
                 
             }
             
@@ -143,12 +203,6 @@ function getMessage() {
                 $('#blackCard').remove();
                 $("#playersTable td[class='judgeScoreClass']").html(""); 
             }
-            
-            if (message.type === "Start New Game")
-            {
-                startNewGame(roomCode);
-            }
-            
 
         },
         error: function( jqXhr, textStatus, errorThrown ){

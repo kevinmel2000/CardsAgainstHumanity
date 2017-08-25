@@ -5,18 +5,28 @@
  */
 package com.hutter.cah;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 /**
  *
  * @author scott
  */
-public class Room {
+public final class Room {
     
     private String roomCode;
     private final int max = 8;
@@ -28,6 +38,20 @@ public class Room {
     private int judgeIndex = -1;
     private Card pickedBlackCard;
     
+    // Constructor
+    public Room()
+    {
+        String whiteDeckString = getDeckFromFile("whiteDeck.json");
+        this.setWhiteDeck(getCardsFromJSONString(whiteDeckString));
+
+        String blackDeckString = getDeckFromFile("blackDeck.json");
+        this.setBlackDeck(getCardsFromJSONString(blackDeckString));
+
+        this.setRoomCode(generateRoomCode());
+    }
+    
+    
+    // Getters / Setters
     public String getRoomCode()
     {
         return roomCode;
@@ -86,11 +110,73 @@ public class Room {
         return this.locked;
     }
     
-    public Room()
-    {
 
+    // Methods
+    
+    private String generateRoomCode()
+    {
+        Random r = new Random();
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String code = "";
+        for (int i = 0; i < 4; i++) {
+            code += alphabet.charAt(r.nextInt(alphabet.length()));
+        }
+
+        return code;
     }
     
+    private String getDeckFromFile(String filename)
+    {
+        try {
+           InputStream f = this.getClass().getClassLoader().getResourceAsStream(filename);
+           InputStreamReader ir = new InputStreamReader(f);
+           BufferedReader br = new BufferedReader(ir); 
+           String text;
+           String json = "";
+
+           while ((text = br.readLine()) != null) {
+               json += text;
+           }
+
+           return json;
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(GameService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return null;
+    }        
+
+    private ArrayList<Card> getCardsFromJSONString(String data)
+    {
+        ArrayList<Card> cards = new ArrayList<>();
+
+        JSONParser  parser = new JSONParser();
+        try {
+
+            JSONObject j = (JSONObject) parser.parse(data);
+            JSONArray jarray = (JSONArray)j.get("cards");
+
+            for (int x = 0; x < jarray.size(); x++)
+            {
+                JSONObject jsonCard = (JSONObject)jarray.get(x);
+
+                Card c = new Card();
+                c.setId((String)jsonCard.get("id"));  
+                c.setPick((String)jsonCard.get("pick"));
+                c.setText((String)jsonCard.get("text"));
+
+                cards.add(c);
+            }
+
+        } catch (ParseException ex) {
+            Logger.getLogger(GameService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return cards;
+    }
+
     public boolean addPlayer(Player p)
     {
         if (players.size() == max)
@@ -162,11 +248,11 @@ public class Room {
         // Select a judge
         selectJudge();
         
+         // Draw a black card and display it on screen & to judge
+        drawBlackCard(); 
+        
         // Deal cards and notify players
         dealCards();
-        
-        // Draw a black card and display it on screen & to judge
-        drawBlackCard();
     }
     
     private void resetDevices()
@@ -223,6 +309,38 @@ public class Room {
         this.pushNotification(m);
     }
     
+    private void drawBlackCard()
+    {
+        Random r = new Random();
+        
+        //do {
+        int blackCardIndex = r.nextInt(blackDeck.size());
+        pickedBlackCard = blackDeck.get(blackCardIndex);
+        blackDeck.remove(blackCardIndex);
+        //} while(pickedBlackCard.getPick().equals("1"));
+        
+        // add card to format needed for message
+        ArrayList<Card> cards = new ArrayList<>();
+        cards.add(pickedBlackCard);
+        
+        Message m = new Message();
+        m.setRoomCode(roomCode);
+        m.setType("Picked Black Card");
+        m.setName("server");
+        m.setText("");
+        m.setCards(cards);
+        this.pushNotification(m);
+        
+        // Send the card to the judge player also
+        m = new Message();
+        m.setRoomCode(roomCode);
+        m.setType("Picked Black Card");
+        m.setName(this.players.get(judgeIndex).getName());
+        m.setText("");
+        m.setCards(cards);
+        this.players.get(judgeIndex).pushNotification(m);
+    }   
+    
     private void dealCards()
     {
         Random r = new Random();
@@ -259,41 +377,15 @@ public class Room {
                m.setRoomCode(roomCode);
                m.setType("Cards Dealt");
                m.setName(this.players.get(playerIndex).getName());
+               m.setText(pickedBlackCard.getPick());
                m.setCards(this.players.get(playerIndex).getCards());
                this.players.get(playerIndex).pushNotification(m);               
             }
          }
     }
-    
-    private void drawBlackCard()
-    {
-        Random r = new Random();
-        int blackCardIndex = r.nextInt(blackDeck.size());
-        pickedBlackCard = blackDeck.get(blackCardIndex);
-        blackDeck.remove(blackCardIndex);
-        
-        Message m = new Message();
-        m.setRoomCode(roomCode);
-        m.setType("Picked Black Card");
-        m.setName("server");
-        m.setText(pickedBlackCard.text);
-        m.setCards(null);
-        this.pushNotification(m);
-        
-        // Send the card to the judge player also
-        m = new Message();
-        m.setRoomCode(roomCode);
-        m.setType("Picked Black Card");
-        m.setName(this.players.get(judgeIndex).getName());
-        m.setText(pickedBlackCard.text);
-        m.setCards(null);
-        this.players.get(judgeIndex).pushNotification(m);
-    }
-    
+
     public void giveJudgeAnswerCard(Message request)
-    {
-        //TODO: remove card from players hand for next draw
-        
+    {       
         Message m = new Message();
         m.setRoomCode(roomCode);
         m.setType("Give Card To Judge");
@@ -320,7 +412,7 @@ public class Room {
             for(int v=0; v< request.getCards().size(); v++)
             {
                 JSONArray turnedInCards = (JSONArray)request.getCards();
-                JSONObject turnedInCard = (JSONObject) turnedInCards.get(0);
+                JSONObject turnedInCard = (JSONObject) turnedInCards.get(v);
                 String turnedInCardId = (String)turnedInCard.get("id");
                 
                 if (cardInHand.id.equals(turnedInCardId))
@@ -333,26 +425,35 @@ public class Room {
     
     public void judgeSelectsWinningCard(Message request)
     {
+        String playerName = request.getText();
+        
+        // Notify player
         Message m = new Message();
         m.setRoomCode(roomCode);
         m.setType("Notify Winner");
+        m.setName(playerName);
+        m.setText("");
+        getPlayerByName(playerName).pushNotification(m);
+        
+        // Notify server of winner
+        m = new Message();
+        m.setRoomCode(roomCode);
+        m.setType("Notify Winner");
         m.setName("server");
-        m.setText(request.getText());
+        m.setText(playerName);
         m.setCards(request.getCards());
         this.pushNotification(m);
         
-        // Add to score
-        addToPlayerScore(request.getText());
+        // Add to player score
+        addToPlayerScore(playerName);
+        String score = Integer.toString(getPlayerByName(playerName).getScore());
         
+        // Notify server to update score
         m = new Message();
         m.setRoomCode(roomCode);
         m.setType("Update Score");
         m.setName("server");
-        
-        String name = getPlayerByName(request.getText()).getName();
-        String score = Integer.toString(getPlayerByName(request.getText()).getScore());
-        
-        m.setText(name + "," + score);
+        m.setText(playerName + "," + score);
         m.setCards(null);
         this.pushNotification(m);
     }
@@ -378,5 +479,30 @@ public class Room {
             this.players.get(x).pushNotification(m);
         }
                 
+    }
+    
+    public void removeDroppedPlayers()
+    {
+        LocalDateTime currentTime = LocalDateTime.now();
+        
+        for(int x=0; x< this.players.size(); x++)
+        {
+            LocalDateTime playerPingTime = this.players.get(x).getLastPing();
+            
+            long timeDif = ChronoUnit.SECONDS.between(playerPingTime,currentTime);
+            
+            if(timeDif > 5)
+            {
+                Message m = new Message();
+                m.setRoomCode(roomCode);
+                m.setType("Dropped Player");
+                m.setName("server");
+                m.setText(this.players.get(x).getName());
+                m.setCards(null);
+                this.pushNotification(m);
+                
+                this.players.remove(x);
+            }
+        }
     }
 }

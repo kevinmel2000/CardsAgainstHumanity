@@ -185,7 +185,7 @@
         } ,        {
             "id" : "46",
             "pick" : "2",
-            "text" : "I never fully understaood __________ until I encountered __________."
+            "text" : "I never fully understood __________ until I encountered __________."
         } ,        {
             "id" : "47",
             "pick" : "1",
@@ -205,11 +205,11 @@
         } ,        {
             "id" : "51",
             "pick" : "1",
-            "text" : "When Pharaoh remained unmoved, Moses called down a Plague of __________."
+            "text" : "When Pharaoh remained unmoved, Moses called down a plague of __________."
         } ,        {
             "id" : "52",
             "pick" :"1",
-            "text" : "A recent labratory study shows that undergraduates have 50% less sex after being exposed to __________."
+            "text" : "A recent laboratory study shows that undergraduates have 50% less sex after being exposed to __________."
         } ,        {
             "id" : "53",
             "pick" : "1",
@@ -366,7 +366,7 @@
         } ,        {
             "id" : "91",
             "pick" : "1",
-            "text" : "Well, if you'll excuse my gentlement, I have a date with __________."
+            "text" : "Well, if you'll excuse me gentlemen, I have a date with __________."
         } ,        {
             "id" : "92",
             "pick" : "1",
@@ -438,7 +438,7 @@
         } ,        {
             "id" : "109",
             "pick" : "2",
-            "text" : "My mom freaked out when she looked at my browswer history and found __________.com/__________."
+            "text" : "My mom freaked out when she looked at my browser history and found __________.com/__________."
         } ,        {
             "id" : "110",
             "pick" : "1",
@@ -450,7 +450,7 @@
         } ,        {
             "id" : "112",
             "pick" : "2",
-            "text" : "__________ is a slipperly slope that leads to __________."
+            "text" : "__________ is a slippery slope that leads to __________."
         } ,        {
             "id" : "113",
             "pick" : "1",
@@ -486,7 +486,7 @@
             "text" : "__________ + __________ = __________."
         } ,        {
             "id" : "121",
-            "pick" : "1",
+            "pick" : "2",
             "text" : "Lifetime presents '__________: the Story of __________.'"
         } ,        {
             "id" : "122",
@@ -563,7 +563,7 @@
         } ,        {
             "id" : "140",
             "pick" : "1",
-            "text" : "What never fails to liven up the party?"
+            "text" : "I just pulled a _________ out of my nose."
         } ,        {
             "id" : "141",
             "pick" : "1",

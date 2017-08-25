@@ -33,7 +33,7 @@ body {
     width: 150px; 
     height: 200px; 
     color:Black; 
-    float:left
+    position:relative;
 }
 
 .smallblackcard {
@@ -58,6 +58,10 @@ body {
     
 }
 
+.cardOrder {
+    display:none;
+}
+
 .tableHeader {
     background-color:black; 
     color:white; 
@@ -75,9 +79,16 @@ body {
     float:left;
 }
 
+#generateRoomSection {
+    float:left; 
+    padding: 10px 10px 10px 10px;
+    display:none;
+}
+
 #statusSection {
     float:left; 
     padding: 10px 10px 10px 10px;
+    display:none;
 }
 
 #scoreSection {
@@ -117,7 +128,8 @@ label
    margin-left: 4.5em; 
 }
 
-#waitingOnOthers {
+.actionButtons {
+    clear:both;
     margin-top: 20px;
 }
 
