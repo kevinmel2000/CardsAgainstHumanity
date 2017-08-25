@@ -12,6 +12,7 @@
         <title>Cards Against Humanity</title>
         <%@ page import="java.util.ArrayList, java.net.InetAddress, com.hutter.cah.Room" %>
         <link href="styles/standard.css" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="scripts/server.js"></script>
     </head>

@@ -77,7 +77,7 @@ function getMessage() {
             }
 
             if (message.type === "Cards Dealt")
-            {
+            { 
                 pickCount = parseInt(message.text);
                 $("#status").html("Please pick " + message.text + " card(s).");
                 
@@ -200,6 +200,8 @@ function joinRoom()
     postMessage(request);
     
     intervalId = setInterval(getMessage, pollInterval);
+    
+    $("#instructions").hide();
 }
 
 function allPlayersIn() {
@@ -378,4 +380,5 @@ function resetPage()
         $("#status").html("");
         $("#judgeDisplay").hide();
         $("#playerDisplay").hide();
+        $("#instructions").show();
 }
