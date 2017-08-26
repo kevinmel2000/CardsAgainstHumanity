@@ -234,6 +234,11 @@ function submitSelection()
         return;
     }
 
+    //Disable picking cards
+    $("#playerDisplay input[type='checkbox']").each(function() {
+        $(this).prop("disabled", true);
+    });
+
     // Notify the server which cards have been picked
     var request = {};
     request.type = "Cards Selected";
