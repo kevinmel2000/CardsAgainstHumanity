@@ -107,8 +107,8 @@ public class GameService {
   
                 if(roomIndex >= 0)
                 {   
-                    // Remove any dropped players
-                    GameService.ROOMS.get(roomIndex).removeDroppedPlayers();
+                    // Set dropped players to Away
+                    GameService.ROOMS.get(roomIndex).setPlayerStatus();
                     
                     // Check for any pending messages
                     if (GameService.ROOMS.get(roomIndex).isNotificationPending() == true)
@@ -186,6 +186,11 @@ public class GameService {
                             m.setType("Player Joined");
                             m.setText(request.getName());
                             GameService.ROOMS.get(roomIndex).pushNotification(m);
+                        }
+                        else
+                        {
+                            // Player was dropped / away.  Fix their status to normal
+                            GameService.ROOMS.get(roomIndex).getPlayer(request.getName()).setAway(false);
                         }
 
                         // Create response object to confirm joining the room

@@ -279,19 +279,26 @@ public final class Room {
     
     private void selectJudge()
     {
-        judgeIndex++;
-        if (judgeIndex > this.players.size()-1)
-            judgeIndex = 0;
-        
+        boolean judgeSelected = false;
         for (int x=0;x<this.players.size()-1; x++)
+            this.players.get(x).setIsJudge(false);     
+
+        // Todo:  its possible that all players could be away.  if that happens, 
+        // this will go into an infinite loop
+        
+        while(judgeSelected == false)
         {
-            if (x != judgeIndex)
-                this.players.get(x).setIsJudge(false);
-            else
-                this.players.get(x).setIsJudge(true);
+            judgeIndex++;
+            if (judgeIndex > this.players.size()-1)
+                judgeIndex = 0; 
+            
+            if (this.players.get(judgeIndex).getAway() == false)
+            {
+                this.players.get(judgeIndex).setIsJudge(true);
+                judgeSelected = true;
+            }       
         }
-        
-        
+       
         Message m = new Message();
         m.setRoomCode(roomCode);
         m.setType("You Are Judge");
@@ -485,7 +492,7 @@ public final class Room {
                 
     }
     
-    public void removeDroppedPlayers()
+    public void setPlayerStatus()
     {
         LocalDateTime currentTime = LocalDateTime.now();
         
@@ -505,7 +512,7 @@ public final class Room {
                 m.setCards(null);
                 this.pushNotification(m);
                 
-                this.players.remove(x);
+                this.players.get(x).setAway(true);
             }
         }
     }

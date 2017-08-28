@@ -20,7 +20,7 @@ public class Player {
     private boolean isJudge; 
     private final ArrayList<Card> cards;
     private LocalDateTime lastPing;
-    private int status;
+    private boolean away;
     private Queue<Message> messageQueue = new LinkedList<Message>();
     private int score;
     
@@ -55,14 +55,14 @@ public class Player {
         return this.isJudge;
     }
     
-    public void setStatus(int status)
+    public void setAway(boolean away)
     {
-        this.status = status;
+        this.away = away;
     }
     
-    public int getStatus()
+    public boolean getAway()
     {
-        return this.status;
+        return this.away;
     }
     
     public void pushNotification(Message message)

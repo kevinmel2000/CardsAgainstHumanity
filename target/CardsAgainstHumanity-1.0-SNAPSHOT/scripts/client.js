@@ -113,6 +113,7 @@ function getMessage() {
                 $("#status").html("You are the judge in this round.");
                 $("#judgeDisplay").show();
                 $("#playerDisplay").hide();
+                $("#winningCardsSelectionSubmit").prop("disabled", true);
             }
             
             if (message.type === "Picked Black Card")
@@ -147,6 +148,8 @@ function getMessage() {
                     div += "</table>";
                 div += "</div>";
                 $('#judgeActionButtons').before(div);
+                
+                $("#winningCardsSelectionSubmit").prop("disabled", false);
             }
             
             if (message.type === "Reset Device")
@@ -233,6 +236,11 @@ function submitSelection()
         $('#status').html("<span style='color:red'>Can not submit. You must pick " + pickCount + " cards.<span>");
         return;
     }
+
+    //Disable picking cards
+    $("#playerDisplay input[type='checkbox']").each(function() {
+        $(this).prop("disabled", true);
+    });
 
     // Notify the server which cards have been picked
     var request = {};

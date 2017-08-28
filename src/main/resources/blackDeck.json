@@ -241,7 +241,7 @@
             "text" : "A romantic, candelit dinner would be incomplete without __________."
         } ,        {
             "id" : "60",
-            "pick" : "1",
+            "pick" : "2",
             "text" : "They said we were crazy. They said we couldn't put __________ inside of __________. They were wrong."
         } ,        {
             "id" : "61",
@@ -381,7 +381,7 @@
             "text" : "Little Miss Muffet, Sat on a tuffet, Eating her curds and __________."
         } ,        {
             "id" : "95",
-            "pick" : "1",
+            "pick" : "2",
             "text" : "When I was tripping on acid, __________ turned into __________."
         } ,        {
             "id" : "96",
@@ -576,7 +576,429 @@
             "id" : "143",
             "pick" : "1",
             "text" : "TSA guidelines now prohibit __________ on airplanes."
-        } 
-    
+} ,        {
+            "id" : "144",
+            "pick" : "1",
+            "text" : "Hey baby, come back to my place and I'll show you _____."
+            } ,        {
+            "id" : "145",
+            "pick" : "1",
+            "text" : "My gym teacher got fired for adding _____ to the obstacle course."
+            } ,        {
+            "id" : "146",
+            "pick" : "1",
+            "text" : "Finally! A service that delivers _____ right to your door."
+            } ,        {
+            "id" : "147",
+            "pick" : "1",
+            "text" : "To prepare for his upcoming role, Daniel Day-Lewis immersed himself in the world of _____."
+            } ,        {
+            "id" : "148",
+            "pick" : "2",
+            "text" : "My life is ruled by a vicious cycle of _____ and _____."
+            } ,        {
+            "id" : "149",
+            "pick" : "1",
+            "text" : "During high school, I never really fit in until I found _____ club."
+            } ,        {
+            "id" : "150",
+            "pick" : "1",
+            "text" : "Money can't buy me love, but it can buy me _____."
+            } ,        {
+            "id" : "151",
+            "pick" : "2",
+            "text" : "Listen, son. If you want to get involved with _____, I won't stop you. Just steer clear of _____."
+            } ,        {
+            "id" : "152",
+            "pick" : "1",
+            "text" : "A successful job interview begins with a firm handshake and ends with _____."
+            } ,        {
+            "id" : "153",
+            "pick" : "1",
+            "text" : "Call the law offices of Goldstein &amp; Goldstein, because no one should have to tolerate _____ in the workplace."
+            } ,        {
+            "id" : "154",
+            "pick" : "1",
+            "text" : "Lovin' you is easy 'cause you're _____."
+            } ,        {
+            "id" : "155",
+            "pick" : "1",
+            "text" : "The blind date was going horribly until we discovered our shared interest in _____."
+            } ,        {
+            "id" : "156",
+            "pick" : "1",
+            "text" : "What left this stain on my couch?"
+            } ,        {
+            "id" : "157",
+            "pick" : "1",
+            "text" : "Turns out that _____-Man was neither the hero we needed nor wanted."
+            } ,        {
+            "id" : "158",
+            "pick" : "2",
+            "text" : "After months of practice with _____, I think I'm finally ready for _____."
+            } ,        {
+            "id" : "159",
+            "pick" : "1",
+            "text" : "In the seventh circle of Hell, sinners must endure _____ for all eternity."
+            } ,        {
+            "id" : "160",
+            "pick" : "1",
+            "text" : "As part of his daily regimen, Anderson Cooper sets aside 15 minutes for _____."
+            } ,        {
+            "id" : "161",
+            "pick" : "2",
+            "text" : "When you get right down to it, _____ is just _____."
+            } ,        {
+            "id" : "162",
+            "pick" : "1",
+            "text" : "Having problems with _____? Try _____!"
+            } ,        {
+            "id" : "163",
+            "pick" : "1",
+            "text" : "And what did <i>you</i> bring for show and tell?"
+            } ,        {
+            "id" : "164",
+            "pick" : "1",
+            "text" : "I'm not like the rest of you. I'm too rich and busy for _____."
+            } ,        {
+            "id" : "165",
+            "pick" : "2",
+            "text" : "With enough time and pressure, _____ will turn into _____."
+            } ,        {
+            "id" : "166",
+            "pick" : "2",
+            "text" : "_____: Hours of fun. Easy to use. Perfect for _____!"
+            } ,        {
+            "id" : "167",
+            "pick" : "1",
+            "text" : "_____. Awesome in theory, kind of a mess in practice."
+            } ,        {
+            "id" : "168",
+            "pick" : "1",
+            "text" : "As part of his contract, Prince won't perform without _____ in his dressing room."
+
+            } ,        {
+            "id" : "169",
+            "pick" : "1",
+            "text" : "Man, this is bullshit. Fuck _____."
+            } ,        {
+            "id" : "170",
+            "pick" : "1",
+            "text" : "Dear Leader Kim Jong-un,<br>our village praises your infinite wisdom with a humble offering of _____."
+            } ,        {
+            "id" : "171",
+            "pick" : "2",
+            "text" : "_____ may pass, but _____ will last forever."
+            } ,        {
+            "id" : "172",
+            "pick" : "1",
+            "text" : "She's up all night for good fun.<br>I'm up all night for _____."
+            } ,        {
+            "id" : "173",
+            "pick" : "1",
+            "text" : "Alright, bros. Our frat house is condemned, and all the hot slampieces are over at Gamma Phi. The time has come to commence Operation _____."
+            } ,        {
+            "id" : "174",
+            "pick" : "1",
+            "text" : "The Japanese have developed a smaller, more efficient version of _____."
+            } ,        {
+            "id" : "175",
+            "pick" : "2",
+            "text" : "In return for my soul, the Devil promised me _____, but all I got was _____."
+            } ,        {
+            "id" : "176",
+            "pick" : "3",
+            "text" : "You guys, I saw this crazy movie last night. It opens on _____, and then there's some stuff about _____, and then it ends with _____."
+            } ,        {
+            "id" : "177",
+            "pick" : "2",
+            "text" : "_____ will never be the same after _____."
+            } ,        {
+            "id" : "178",
+            "pick" : "1",
+            "text" : "Wes Anderson's new film tells the story of a precocious child coming to terms with _."
+            } ,        {
+            "id" : "179",
+            "pick" : "2",
+            "text" : "In the beginning, there was _____.<br>And the Lord said, 'Let there be _____.'"
+            } ,        {
+            "id" : "180",
+            "pick" : "1",
+            "text" : "What's fun until it gets weird?"
+            } ,        {
+            "id" : "181",
+            "pick" : "2",
+            "text" : "We never did find _____, but along the way we sure learned a lot about _____."
+            } ,        {
+            "id" : "182",
+            "pick" : "1",
+            "text" : "You've seen the bearded lady!<br>You've seen the ring of fire!<br>Now, ladies and gentlemen, feast your eyes upon _____!"
+            } ,        {
+            "id" : "183",
+            "pick" : "1",
+            "text" : "How am I compensating for my tiny penis?"
+            } ,        {
+            "id" : "184",
+            "pick" : "1",
+            "text" : "I'm sorry, sir, but we don't allow _____ at the country club."
+            } ,        {
+            "id" : "185",
+            "pick" : "1",
+            "text" : "2 AM in the city that never sleeps. The door swings open and <i>she</i> walks in, legs up to here. Something in her eyes tells me she's looking for _____."
+            } ,        {
+            "id" : "186",
+            "pick" : "1",
+            "text" : "As king, how will I keep the peasants in line?"
+            } ,        {
+            "id" : "187",
+            "pick" : "2",
+            "text" : "Oprah's book of the month is '_____ For _____: A Story of Hope."
+            } ,        {
+            "id" : "188",
+            "pick" : "1",
+            "text" : "Do <i>not</i> fuck with me! I am literally _____ right now."
+            } ,        {
+            "id" : "189",
+            "pick" : "2",
+            "text" : "Adventure.<br>Romance.<br>_____.<br><br>From Paramount Pictures, _____."
+            } ,        {
+            "id" : "190",
+            "pick" : "2",
+            "text" : "I am become _____, destroyer of _____!"
+            } ,        {
+            "id" : "191",
+            "pick" : "1",
+            "text" : "It lurks in the night. It hungers for flesh. This summer, no one is safe from _____."
+            } ,        {
+            "id" : "192",
+            "pick" : "2",
+            "text" : "If you can't handle _____, you'd better stay away from _____."
+            } ,        {
+            "id" : "193",
+            "pick" : "1",
+            "text" : "This is the prime of my life. I'm young, hot, and full of _____."
+            } ,        {
+            "id" : "194",
+            "pick" : "1",
+            "text" : "I'm pretty sure I'm high right now, because I'm absolutely mesmerized by _____."
+            } ,        {
+            "id" : "195",
+            "pick" : "2",
+            "text" : "This year's hottest album is '_____' by _____."
+            } ,        {
+            "id" : "196",
+            "pick" : "2",
+            "text" : "Every step towards _____ gets me a little closer to _____."
+            } ,        {
+            "id" : "197",
+            "pick" : "2",
+            "text" : "Forget everything you know about _____, because now we've supercharged it with _____!"
+            } ,        {
+            "id" : "198",
+            "pick" : "2",
+            "text" : "Honey, I have a new role-play I want to try tonight! You can be _____, and I'll be _____."
+            
+            } ,        {
+            "id" : "199",
+            "pick" : "1",
+            "text" : "Do the Dew &reg; with our most extreme flavor yet! Get ready for Mountain Dew _____!"
+            } ,        {
+            "id" : "200",
+            "pick" : "1",
+            "text" : "Armani suit: $1,000. Dinner for two at that swanky restaurant: $300. The look on her face when you surprise her with _____: priceless."
+            } ,        {
+            "id" : "201",
+            "pick" : "1",
+            "text" : "In his new action comedy, Jackie Chan must fend off ninjas while also dealing with _____."
+            } ,        {
+            "id" : "202",
+            "pick" : "1",
+            "text" : "Well what do you have to say for yourself, Casey? This is the third time you've been sent to the principal's office for _____."
+            } ,        {
+            "id" : "203",
+            "pick" : "1",
+            "text" : "Here at the Academy for Gifted Children, we allow students to explore _____ at their own pace."
+            } ,        {
+            "id" : "204",
+            "pick" : "2",
+            "text" : "Heed my voice, mortals! I am the god of _____, and I will not tolerate _____!"
+            } ,        {
+            "id" : "205",
+            "pick" : "1",
+            "text" : "I don't mean to brag, but they call me the Michael Jordan of _____."
+            } ,        {
+            "id" : "206",
+            "pick" : "1",
+            "text" : "Why am I broke?"
+            } ,        {
+            "id" : "207",
+            "pick" : "1",
+            "text" : "Help me doctor, I've got _____ in my butt!"
+            } ,        {
+            "id" : "208",
+            "pick" : "1",
+            "text" : "Hi MTV! My name is Kendra, I live in Malibu, I'm into _____, and I love to have a good time."
+            } ,        {
+            "id" : "209",
+            "pick" : "2",
+            "text" : "Patient presents with _____. Likely a result of _____."
+            } ,        {
+            "id" : "210",
+            "pick" : "1",
+            "text" : "Life's pretty tough in the fast lane. That's why I never leave the house without _____."
+            } ,        {
+            "id" : "211",
+            "pick" : "1",
+            "text" : "What's making things awkward in the sauna?"
+            } ,        {
+            "id" : "212",
+            "pick" : "1",
+            "text" : "Get ready for the movie of the summer! One cop plays by the book. The other's only interested in one thing: _____."
+            } ,        {
+            "id" : "213",
+            "pick" : "1",
+            "text" : "Having the worst day EVER. #_____"
+            } ,        {
+            "id" : "214",
+            "pick" : "1",
+            "text" : "In his farewell address, George Washington famously warned Americans about the dangers of _____."
+            } ,        {
+            "id" : "215",
+            "pick" : "1",
+            "text" : "Don't forget! Beginning this week, Casual Friday will officially become '_____ Friday.'"
+            } ,        {
+            "id" : "216",
+            "pick" : "1",
+            "text" : "What killed my boner?"
+            } ,        {
+            "id" : "217",
+            "pick" : "1",
+            "text" : "Yo' mama so fat she _____!"
+            } ,        {
+            "id" : "218",
+            "pick" : "2",
+            "text" : "Well if _____ is good enough for _____, it's good enough for me."
+            } ,        {
+            "id" : "219",
+            "pick" : "1",
+            "text" : "Hi, this is Jim from accounting. We noticed a $1,200 charge labeled '_____'. Can you explain?"
+            } ,        {
+            "id" : "220",
+            "pick" : "1",
+            "text" : "Do you lack energy? Does it sometimes feel like the whole world is _____? Zoloft.&reg;"
+            } ,        {
+            "id" : "221",
+            "pick" : "1",
+            "text" : "WHOOO! God damn I love _____!"
+            } ,        {
+            "id" : "222",
+            "pick" : "1",
+            "text" : "Now in bookstores: 'The Audacity of _____', by Barack Obama."
+            } ,        {
+            "id" : "223",
+            "pick" : "1",
+            "text" : "And today's soup is Cream of _____."
+            
+            } ,        {
+            "id" : "224",
+            "pick" : "1",
+            "text" : "I work my ass off all day for this family, and this is what I come home to? _____!?"
+            } ,        {
+            "id" : "225",
+            "pick" : "1",
+            "text" : "I have a strict policy. First date, dinner. Second date, kiss. Third date, _____."
+            } ,        {
+            "id" : "226",
+            "pick" : "1",
+            "text" : "When I was a kid, we used to play Cowboys and _____."
+            } ,        {
+            "id" : "227",
+            "pick" : "1",
+            "text" : "This is America. If you don't work hard, you don't succeed. I don't care if you're black, white, purple, or _____."
+            } ,        {
+            "id" : "228",
+            "pick" : "1",
+            "text" : "You Won't Believe These 15 Hilarious _____ Bloopers!"
+            } ,        {
+            "id" : "229",
+            "pick" : "1",
+            "text" : "James is a lonely boy. But when he discovers a secret door in his attic, he meets a magical new friend: _____."
+            } ,        {
+            "id" : "230",
+            "pick" : "1",
+            "text" : "Don't worry kid. It gets better. I've been living with _____ for 20 years."
+            } ,        {
+            "id" : "231",
+            "pick" : "1",
+            "text" : "My grandfather worked his way up from nothing. When he came to this country, all he had was the shoes on his feet and _____."
+            } ,        {
+            "id" : "232",
+            "pick" : "1",
+            "text" : "Behind every powerful man is _____."
+            } ,        {
+            "id" : "233",
+            "pick" : "1",
+            "text" : "You are not alone. Millions of Americans struggle with _____ every day."
+            } ,        {
+            "id" : "234",
+            "pick" : "1",
+            "text" : "Come to Dubai, where you can relax in our world famous spas, experience the nightlife, or simply enjoy _____ by the poolside."
+            } ,        {
+            "id" : "235",
+            "pick" : "1",
+            "text" : "This is madness! No, THIS IS _____!!"
+            } ,        {
+            "id" : "236",
+            "pick" : "1",
+            "text" : "Listen Gary, I like you. But if you want that corner office, you're going to have to show me _____."
+            } ,        {
+            "id" : "237",
+            "pick" : "1",
+            "text" : "I went to the desert and ate of the peyote cactus. Turns out my spirit animal is _____."
+            } ,        {
+            "id" : "238",
+            "pick" : "1",
+            "text" : "And would you like those buffalo wings mild, hot, or _____?"
+            } ,        {
+            "id" : "239",
+            "pick" : "1",
+            "text" : "The six things I could never do without: oxygen, Facebook, chocolate, Netflix, friends, and _____ LOL!"
+            } ,        {
+            "id" : "240",
+            "pick" : "1",
+            "text" : "Why won't you make love to me anymore? Is it _____?"
+            } ,        {
+            "id" : "241",
+            "pick" : "1",
+            "text" : "Puberty is a time of change. You might notice hair growing in new places. You might develop an interest in _____. This is normal."
+            } ,        {
+            "id" : "242",
+            "pick" : "1",
+            "text" : "I'm sorry, Mrs. Chen, but there was nothing we could do. At 4:15 this morning, your son succumbed to _____."
+            } ,        {
+            "id" : "243",
+            "pick" : "1",
+            "text" : "I'm Miss Tennessee, and if I could make the world better by changing one thing, I would get rid of _____."
+            } ,        {
+            "id" : "244",
+            "pick" : "1",
+            "text" : "Tonight we will have sex. And afterwards, If you'd like, a little bit of _____."
+            } ,        {
+            "id" : "245",
+            "pick" : "1",
+            "text" : "Everybody join hands and close your eyes. Do you sense that? That's the presence of _____ in this room."
+            } ,        {
+            "id" : "246",
+            "pick" : "1",
+            "text" : "To become a true Yanomamo warrior, you must prove that you can withstand _____ without crying out."
+            } ,        {
+            "id" : "247",
+            "pick" : "1",
+            "text" : "Y'all ready to get this thing started? I'm Nick Cannon, and this is America's Got _____."
+            } ,        {
+            "id" : "248",
+            "pick" : "1",
+            "text" : "If you had to describe the Card Czar, using only one of the cards in your hand, which one would it be?"
+            }
     ]
 }

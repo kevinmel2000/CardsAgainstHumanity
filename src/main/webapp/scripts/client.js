@@ -113,6 +113,7 @@ function getMessage() {
                 $("#status").html("You are the judge in this round.");
                 $("#judgeDisplay").show();
                 $("#playerDisplay").hide();
+                $("#winningCardsSelectionSubmit").prop("disabled", true);
             }
             
             if (message.type === "Picked Black Card")
@@ -147,6 +148,8 @@ function getMessage() {
                     div += "</table>";
                 div += "</div>";
                 $('#judgeActionButtons').before(div);
+                
+                $("#winningCardsSelectionSubmit").prop("disabled", false);
             }
             
             if (message.type === "Reset Device")
