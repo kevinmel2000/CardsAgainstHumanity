@@ -165,7 +165,20 @@ function getMessage() {
             
             if (message.type === "Notify Winner")
             {
-                audio.play();
+                $('#status').html("Player: " + message.text + " wins with...");
+                $("div[class='smallwhitecard']").remove();
+                
+                // Show winning card
+                var div = "<div class='smallwhitecard' style='padding-top:0px;padding-bottom:0px'>";
+                    div += "<ol style='margin-left:-25px'>";
+                    for(var x=0; x<message.cards.length; x++)
+                    {
+                        div += "<li>" + message.cards[x].text + "</li>";
+                    }
+                    div += "</ol>";
+                div += "</div>";
+                
+                $('#playerActionButtons').before(div); 
             }
             
             if (message.type === "Start New Game")

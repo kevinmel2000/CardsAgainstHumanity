@@ -437,15 +437,22 @@ public final class Room {
     public void judgeSelectsWinningCard(Message request)
     {
         String playerName = request.getText();
-        
-        // Notify player
         Message m = new Message();
-        m.setRoomCode(roomCode);
-        m.setType("Notify Winner");
-        m.setName(playerName);
-        m.setText("");
-        getPlayerByName(playerName).pushNotification(m);
         
+        // Notify players
+        for(int x=0; x< this.players.size(); x++)
+        {
+            if (this.players.get(x).getIsJudge() == false)
+            {
+                m.setRoomCode(roomCode);
+                m.setType("Notify Winner");
+                m.setName(this.players.get(x).getName());
+                m.setText(playerName);
+                m.setCards(request.getCards());
+                getPlayerByName(this.players.get(x).getName()).pushNotification(m);                   
+            }
+        }
+
         // Notify server of winner
         m = new Message();
         m.setRoomCode(roomCode);

@@ -177,22 +177,24 @@ public class GameService {
                             Player p = new Player();
                             p.setName(request.getName());
                             GameService.ROOMS.get(roomIndex).addPlayer(p);
-                            GameService.ROOMS.get(roomIndex).getPlayer(request.getName()).setLastPing(LocalDateTime.now());  
-                           
-                            // Notify the room that a player has joined.
-                            Message m = new Message();
-                            m.setRoomCode(request.getRoomCode());
-                            m.setName("server");
-                            m.setType("Player Joined");
-                            m.setText(request.getName());
-                            GameService.ROOMS.get(roomIndex).pushNotification(m);
                         }
                         else
                         {
                             // Player was dropped / away.  Fix their status to normal
                             GameService.ROOMS.get(roomIndex).getPlayer(request.getName()).setAway(false);
-                        }
-
+                            GameService.ROOMS.get(roomIndex).getPlayer(request.getName()).clearNotifications();
+                        }  
+                        
+                        GameService.ROOMS.get(roomIndex).getPlayer(request.getName()).setLastPing(LocalDateTime.now());  
+                        
+                        // Notify the room that a player has joined.
+                        Message m = new Message();
+                        m.setRoomCode(request.getRoomCode());
+                        m.setName("server");
+                        m.setType("Player Joined");
+                        m.setText(request.getName());
+                        GameService.ROOMS.get(roomIndex).pushNotification(m);
+                            
                         // Create response object to confirm joining the room
                         response.setRoomCode(request.getText());
                         response.setName(request.getName());
@@ -217,6 +219,7 @@ public class GameService {
                 int roomIndex = getRoomIndexByCode(request.getRoomCode());
                 
                 //GameService.ROOMS.get(roomIndex).setLock(true);
+                GameService.ROOMS.get(roomIndex).getPlayer(request.getName()).setLastPing(LocalDateTime.now());
                 GameService.ROOMS.get(roomIndex).playGame();                  
 
             }
@@ -278,6 +281,7 @@ public class GameService {
             if (type.equals("Start New Round"))
             {
                 int roomIndex = getRoomIndexByCode(request.getRoomCode());
+                GameService.ROOMS.get(roomIndex).getPlayer(request.getName()).setLastPing(LocalDateTime.now());
                 GameService.ROOMS.get(roomIndex).playGame();  
             }
             

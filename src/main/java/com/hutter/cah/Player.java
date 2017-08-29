@@ -78,6 +78,11 @@ public class Player {
             return null;
     }
     
+    public void clearNotifications()
+    {
+        this.messageQueue.clear();
+    }
+    
     public boolean isNotificationPending()
     {
         return this.messageQueue.size() > 0;
