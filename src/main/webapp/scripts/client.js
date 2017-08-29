@@ -308,12 +308,14 @@ function setSelectOrder(cardId)
     }
     else
     {
-        selectOrder--;
-        $(selectionCheckBoxId).attr("order", 0);
+        selectOrder=0;
+
+        $(".smallwhitecard input:checked").prop('checked', false);
         
-        var selector = "#" + cardId;
-        $(selector).html("");
-        $(selector).hide();
+        $(".cardOrder").each(function() {
+            $(this).html("");
+            $(this).hide();
+        });
     }
 }
 

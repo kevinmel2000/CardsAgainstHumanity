@@ -988,7 +988,7 @@
                 "id" : "320", "text": "Some really fucked-up shit."
             },
             {
-                "id" : "321", "text": "Famcy Feast."
+                "id" : "321", "text": "Fancy Feast."
             },
             {
                 "id" : "322", "text": "A pinata full of scorpions."
@@ -1081,7 +1081,7 @@
                 "id" : "351", "text": "Smegma."
             },
             {
-                "id" : "352", "text": "Andre the Gian'ts enormous, leathery scrotum."
+                "id" : "352", "text": "Andre the Giant's enormous, leathery scrotum."
             },
             {
                 "id" : "353", "text": "The Force."
@@ -2781,6 +2781,39 @@
             },
             {
                 "id":"927", "text":"No longer finding any Cards Against Humanity card funny."
+
+            
+            },
+            {
+                "id":"928", "text":"Skid marks on your underwear."
+            },
+            {
+                "id":"929", "text":"Racoon assholes."
+            },
+            {
+                "id":"930", "text":"A bitchy teenager on her period."
+            },
+            {
+                "id":"931", "text":"Tooth decay."
+            },
+            {
+                "id":"932", "text":"Donkey testicles."
+            },
+            {
+                "id":"933", "text":"My mother's putrid vagina."
+            },
+            {
+                "id":"934", "text":"An aborted fetus in a garbage can."
+            },
+            {
+                "id":"935", "text":"Putting a baby in the microwave oven for 5 minutes or until done."
+            },
+            {
+                "id":"936", "text":"Toenail fungus."
+            },
+            {
+                "id":"937", "text":"A really bad Elvis impersonator."
             }
+            
     ]
 }
