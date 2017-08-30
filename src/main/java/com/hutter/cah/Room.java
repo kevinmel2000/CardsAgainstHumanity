@@ -280,7 +280,7 @@ public final class Room {
     private void selectJudge()
     {
         boolean judgeSelected = false;
-        for (int x=0;x<this.players.size()-1; x++)
+        for (int x=0;x<this.players.size(); x++)
             this.players.get(x).setIsJudge(false);     
 
         // Todo:  its possible that all players could be away.  if that happens, 
@@ -289,7 +289,7 @@ public final class Room {
         while(judgeSelected == false)
         {
             judgeIndex++;
-            if (judgeIndex > this.players.size()-1)
+            if (judgeIndex >= this.players.size())
                 judgeIndex = 0; 
             
             if (this.players.get(judgeIndex).getAway() == false)
@@ -413,6 +413,22 @@ public final class Room {
         m.setText(request.getName());
         m.setCards(request.getCards());
         this.pushNotification(m);
+        
+        // Send the card to all other players for display
+        for(int x=0; x<this.players.size(); x++)
+        {
+            // Dont send to judge (they can see them anyway) nor to the player who sent it
+            if(this.players.get(x).getIsJudge() == false && !this.players.get(x).getName().equals(request.getName()))
+            {
+                m = new Message();
+                m.setRoomCode(roomCode);
+                m.setType("Show Card To Other Players");
+                m.setName(this.players.get(x).getName());
+                m.setText(request.getName());
+                m.setCards(request.getCards());
+                getPlayerByName(this.players.get(x).getName()).pushNotification(m);
+            }
+        }
         
         // remove the chosen cards from player's hand
         Player p = getPlayerByName(request.getName());

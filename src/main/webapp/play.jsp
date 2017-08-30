@@ -43,13 +43,14 @@
                     <h4>Winning</h4>
                     <p>There is no formal end to the game - play to 10 points or 100 points.  The real goal is to have fun!</p>
                     <p>**Disclaimer- this is a fan-made game and is not endorsed by Cards Against Humanity LLC.  This implementation was written by
-                        <a href='mailto:scott.hutter@gmail.com'>Scott Hutter</a>.</p>
+                        <a href='http://github.com/xlar54/CardsAgainstHumanity'>Scott Hutter</a>.</p>
                 </div>
             </div> 
         </div>
 
         <div id='playerDisplay' style='display:none'>
             <div class='smallblackcard'></div>
+            <div id="otherPlayerCards"></div>
             <div id='playerActionButtons' class='actionButtons'>
                <input id="cardSelectionSubmit" type="Submit" onClick="submitSelection()" /> 
             </div>

@@ -11,7 +11,7 @@ var selectOrder = 0;
 
  $(document).ready(function() {
 
-    $("#allPlayersInButton").hide();
+    resetPage();
 
  });
 
@@ -96,7 +96,7 @@ function getMessage() {
                          div += ">" + message.cards[x].text;
                          
                       div += "</div>";
-                   $('#playerActionButtons').before(div);                   
+                   $('#otherPlayerCards').before(div);                   
                 }
 
                 $("#judgeDisplay").hide();
@@ -152,6 +152,21 @@ function getMessage() {
                 $("#winningCardsSelectionSubmit").prop("disabled", false);
             }
             
+            if (message.type === "Show Card To Other Players")
+            {
+                var div = "<div id='answerCard' class='smallwhitecard' style='padding-top:0px;padding-bottom:0px' player='" + message.text + "'>";
+                    div += "<div class='answerCardPlayerName'>" + message.text + "</div>";
+                    div += "<ol style='margin-left:-25px'>";
+                    for(var x=0; x<message.cards.length; x++)
+                    {
+                        div += "<li>" + message.cards[x].text + "</li>";
+                    }
+                    div += "</ol>";
+                div += "</div>";
+                
+                $('#otherPlayerCards').append(div);
+            }
+            
             if (message.type === "Reset Device")
             {
                 $('#status').html("New round");
@@ -161,23 +176,19 @@ function getMessage() {
                 $('#cardSelectionSubmit').show();
                 $('#winningCardsSelectionSubmit').show();
                 $("div[class='smallwhitecard']").remove();
+                $('#otherPlayerCards').html("<div>Other Player's Cards</div>");
+                $('#otherPlayerCards').hide();
             }
             
             if (message.type === "Notify Winner")
             {
-                $('#status').html("Player: " + message.text + " wins with...");
-                $("div[class='smallwhitecard']").remove();
+                $('#status').html("Player: " + message.text + " wins!");
+                $("div[class='answerCardPlayerName']").show();
                 
-                // Show winning card
-                var div = "<div class='smallwhitecard' style='padding-top:0px;padding-bottom:0px'>";
-                    div += "<ol style='margin-left:-25px'>";
-                    for(var x=0; x<message.cards.length; x++)
-                    {
-                        div += "<li>" + message.cards[x].text + "</li>";
-                    }
-                    div += "</ol>";
-                div += "</div>";
-                
+                // Display checkmark on winning card
+                var winningCard =  ".smallwhitecard[player='" + message.text + "']";
+                $(winningCard).prepend("<div style='display:block; margin-top:0px;float:right;'><img src='images/checkmark.png' style='width:40px;height:40px'></div>");
+                                
                 $('#playerActionButtons').before(div); 
             }
             
@@ -282,6 +293,22 @@ function submitSelection()
               request.cards.push(unsortedCards[z]);  
         }    
     }
+    
+    // Reformat card and display it at top.  Other player cards will display below
+    //$('#playerDisplay input:checkbox:not(:checked)').parent().remove();
+    $('#playerDisplay input:checkbox').parent().remove();
+
+    var div = "<div id='answerCard' class='smallwhitecard' style='padding-top:0px;padding-bottom:0px' player='" + name + "'>";
+        div += "<ol style='margin-left:-25px'>";
+        for(var x=0; x<request.cards.length; x++)
+        {
+            div += "<li>" + request.cards[x].text + "</li>";
+        }
+        div += "</ol>";
+    div += "</div>";
+
+    $('#otherPlayerCards').before(div); 
+    $('#otherPlayerCards').show();
     
     $('#cardSelectionSubmit').hide();
     $('#status').html("Selection made. Waiting for the judge selection.");
@@ -404,4 +431,7 @@ function resetPage()
         $("#judgeDisplay").hide();
         $("#playerDisplay").hide();
         $("#instructions").show();
+        $('#otherPlayerCards').html("<div>Other Player's Cards</div>");
+        $('#otherPlayerCards').hide();
+        $("div[class='answerCardPlayerName']").hide();
 }
