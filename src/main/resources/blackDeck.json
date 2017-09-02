@@ -1169,6 +1169,18 @@
             "id" : "271",
             "pick" : "1",
             "text" : "Hanging ______ adds an artistic touch to any home decor."
+            } ,        {
+            "id" : "272",
+            "pick" : "1",
+            "text" : "Why did the chicken cross the road?"
+            } ,        {
+            "id" : "273",
+            "pick" : "1",
+            "text" : "It was a close call, but I barely survived ______."
+            } ,        {
+            "id" : "274",
+            "pick" : "1",
+            "text" : "I can tell that a woman wants me when she asks for my ________."
             }
         
             

@@ -400,7 +400,7 @@
                 "id" : "133", "text": "Completely unwarranted confidence."
             },
             {
-                "id" : "134", "text": "The coo, refreshing taste of Pepsi."
+                "id" : "134", "text": "The cool, refreshing taste of Pepsi."
             },
             {
                 "id" : "135", "text": "Mild autism."
@@ -2813,7 +2813,27 @@
             },
             {
                 "id":"937", "text":"A really bad Elvis impersonator."
+            },
+            {
+                "id":"938", "text":"Donald Trump's tiny hands."
+            },
+            {
+                "id":"939", "text":"Tourettes syndrome."
+            },
+            {
+                "id":"940", "text":"A child with down syndrome."
+            },
+            {
+                "id":"941", "text":"A basket of bloody tampons."
+            },
+            {
+                "id":"942", "text":"A McDonalds Happy Meal."
+            },
+            {
+                "id":"943", "text":"Itchy nuts."
+            },
+            {
+                "id":"944", "text":"A lawnchair, lube, and a box of animal crackers."
             }
-            
     ]
 }

@@ -189,7 +189,7 @@ public class GameService {
                         
                         // Notify the room that a player has joined.
                         Message m = new Message();
-                        m.setRoomCode(request.getRoomCode());
+                        m.setRoomCode(request.getText());
                         m.setName("server");
                         m.setType("Player Joined");
                         m.setText(request.getName());
